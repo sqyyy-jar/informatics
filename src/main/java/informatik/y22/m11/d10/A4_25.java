@@ -4,7 +4,7 @@ import informatik.Exercise;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.25")
+@Exercise("Aufgabe 4.25 - Dreieck Zeichner")
 public class A4_25 {
     public static void run() {
         System.out.print("Anzahl der Zeilen: ");

@@ -4,7 +4,7 @@ import informatik.Exercise;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.30")
+@Exercise("Aufgabe 4.30 - Zinseszins Rechner")
 public class A4_30 {
     public static void run() {
         Scanner scanner = new Scanner(System.in);

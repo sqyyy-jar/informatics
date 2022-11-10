@@ -4,7 +4,7 @@ import informatik.Exercise;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.31")
+@Exercise("Aufgabe 4.31 - Zahlenraten Spiel")
 public class A4_31 {
     public static void run() {
         System.out.println("""

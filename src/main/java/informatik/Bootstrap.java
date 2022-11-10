@@ -22,11 +22,11 @@ public class Bootstrap {
         } catch (ClassNotFoundException e) {
             err("Could not find class '" + args[0] + "'");
         } catch (NoSuchMethodException e) {
-            err("Could not find method 'void run()'");
+            err("Could not find method 'static void run()'");
         } catch (InvocationTargetException e) {
             System.err.println("=".repeat(60));
             e.getTargetException().printStackTrace();
-            err("Could not invoke method 'void run()'");
+            err("Could not invoke method 'static void run()'");
         } catch (IllegalAccessException e) {
             err("Could not access something: " + e.getMessage());
         }

@@ -4,7 +4,7 @@ import informatik.Exercise;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.29")
+@Exercise("Aufgabe 4.29 - 1-10 Vielfaches")
 public class A4_29 {
     public static void run() {
         System.out.print("Geben sie eine Zahl ein: ");

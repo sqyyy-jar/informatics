@@ -2,7 +2,7 @@ package informatik.y22.m11.d10;
 
 import informatik.Exercise;
 
-@Exercise("Aufgabe 4.22")
+@Exercise("Aufgabe 4.22 - Schlechter Programmierstil")
 @SuppressWarnings("all")
 public class A4_22 {
     public static void run() {

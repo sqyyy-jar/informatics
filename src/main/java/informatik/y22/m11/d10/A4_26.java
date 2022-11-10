@@ -4,7 +4,7 @@ import informatik.Exercise;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.26")
+@Exercise("Aufgabe 4.26 - Quersummen Rechner")
 public class A4_26 {
     public static void run() {
         System.out.print("Positive Ganzzahl eingeben: ");
