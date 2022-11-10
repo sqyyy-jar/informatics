@@ -1,4 +1,4 @@
-package informatik.y22.m11.d10;
+package y22.m11.d10;
 
 import informatik.Exercise;
 
