@@ -7,7 +7,7 @@ public class Stundenvertrag extends Vertrag {
     private int stundenzahl;
 
     public Stundenvertrag(Date vertragsdatum, double stundensatz, int stundenzahl) {
-        this(vertragsdatum);
+        super(vertragsdatum);
         this.stundensatz = stundensatz;
         this.stundenzahl = stundenzahl;
     }
