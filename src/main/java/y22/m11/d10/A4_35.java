@@ -12,8 +12,10 @@ public class A4_35 {
         int t = scanner.nextInt();
         System.out.print("Monat : ");
         int m = scanner.nextInt();
+        int oldM = m;
         System.out.print("Jahr  : ");
         int j = scanner.nextInt();
+        int oldJ = j;
         if (m <= 2) {
             m += 10;
             j--;
@@ -26,7 +28,7 @@ public class A4_35 {
         if (h < 0) {
             h += 7;
         }
-        System.out.printf("Der %d.%d.%d ist ein %s.\n", t, m, j, switch (h) {
+        System.out.printf("Der %d.%d.%d ist ein %s.\n", t, oldM, oldJ, switch (h) {
             case 0 -> "Sonntag";
             case 1 -> "Montag";
             case 2 -> "Dienstag";
