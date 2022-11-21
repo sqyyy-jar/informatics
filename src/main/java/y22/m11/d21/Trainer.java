@@ -18,7 +18,15 @@ public class Trainer extends Person {
         return lizenz;
     }
 
+    public void setLizenz(boolean lizenz) {
+        this.lizenz = lizenz;
+    }
+
     public int getFortbildungen() {
         return fortbildungen;
+    }
+
+    public void setFortbildungen(int fortbildungen) {
+        this.fortbildungen = fortbildungen;
     }
 }

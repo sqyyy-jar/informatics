@@ -11,11 +11,23 @@ public abstract class Person {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getVorname() {
         return vorname;
     }
 
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
     public Date getGeburtsdatum() {
         return geburtsdatum;
+    }
+
+    public void setGeburtsdatum(Date geburtsdatum) {
+        this.geburtsdatum = geburtsdatum;
     }
 }
