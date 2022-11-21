@@ -7,9 +7,10 @@ public class Trainer extends Person {
     private int fortbildungen;
 
     public Trainer(String name, String vorname, Date geburtsdatum, boolean lizenz, int fortbildungen) {
-        this.name = name;
+        super(name, vorname, geburtsdatum);
+        /* this.name = name;
         this.vorname = vorname;
-        this.geburtsdatum = geburtsdatum;
+        this.geburtsdatum = geburtsdatum; */
         this.lizenz = lizenz;
         this.fortbildungen = fortbildungen;
     }

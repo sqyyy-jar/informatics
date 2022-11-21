@@ -7,6 +7,12 @@ public abstract class Person {
     protected String vorname;
     protected Date geburtsdatum;
 
+    public Person(String name, String vorname, Date geburtsdatum) {
+        this.name = name;
+        this.vorname = vorname;
+        this.geburtsdatum = geburtsdatum;
+    }
+
     public String getName() {
         return name;
     }

@@ -9,9 +9,10 @@ public class Spieler extends Person {
 
     public Spieler(String name, String vorname, Date geburtsdatum, String stammposition, String alternativposition,
                    int fitnesslevel) {
-        this.name = name;
+        super(name, vorname, geburtsdatum);
+        /* this.name = name;
         this.vorname = vorname;
-        this.geburtsdatum = geburtsdatum;
+        this.geburtsdatum = geburtsdatum; */
         this.stammposition = stammposition;
         this.alternativposition = alternativposition;
         this.fitnesslevel = fitnesslevel;
