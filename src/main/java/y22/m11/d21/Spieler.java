@@ -21,11 +21,23 @@ public class Spieler extends Person {
         return stammposition;
     }
 
+    public void setStammposition(String stammposition) {
+        this.stammposition = stammposition;
+    }
+
     public String getAlternativposition() {
         return alternativposition;
     }
 
+    public void setAlternativposition(String alternativposition) {
+        this.alternativposition = alternativposition;
+    }
+
     public int getFitnesslevel() {
         return fitnesslevel;
+    }
+
+    public void setFitnesslevel(int fitnesslevel) {
+        this.fitnesslevel = fitnesslevel;
     }
 }
