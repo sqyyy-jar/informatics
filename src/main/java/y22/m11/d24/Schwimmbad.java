@@ -18,6 +18,6 @@ public class Schwimmbad extends Sportstaette {
 
     @Override
     public double gibGesamtgebuehr() {
-        return grundgebuehr * (1 + prozentAufschlag);
+        return (1 + prozentAufschlag / 100) * grundgebuehr;
     }
 }
