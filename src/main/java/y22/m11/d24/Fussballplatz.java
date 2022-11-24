@@ -29,6 +29,6 @@ public class Fussballplatz extends Sportstaette {
 
     @Override
     public double gibGesamtgebuehr() {
-        return grundgebuehr + anzahlTrainingseinheiten * gebuehrProTrainingseinheit;
+        return gibGrundgebuehr() + anzahlTrainingseinheiten * gebuehrProTrainingseinheit;
     }
 }
