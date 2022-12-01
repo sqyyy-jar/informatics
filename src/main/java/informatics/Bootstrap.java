@@ -1,4 +1,6 @@
-package informatik;
+package informatics;
+
+import org.atteo.classindex.ClassIndex;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -6,7 +8,11 @@ import java.lang.reflect.Method;
 public class Bootstrap {
     public static void main(String[] args) {
         if (args.length != 1) {
-            err("Usage: ???.jar [package.Class]");
+            System.out.println("The following exercises were found:");
+            for (Class<?> aClass : ClassIndex.getAnnotated(Exercise.class)) {
+                Exercise annotation = aClass.getAnnotation(Exercise.class);
+                System.out.printf("* %s\n", annotation.value());
+            }
             return;
         }
         try {

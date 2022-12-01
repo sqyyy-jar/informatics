@@ -1,6 +1,6 @@
 package y22.m11.d10;
 
-import informatik.Exercise;
+import informatics.Exercise;
 
 import java.util.*;
 
