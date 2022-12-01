@@ -4,14 +4,21 @@ import org.atteo.classindex.ClassIndex;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 public class Bootstrap {
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("The following exercises were found:");
-            for (Class<?> aClass : ClassIndex.getAnnotated(Exercise.class)) {
+            final List<Class<?>> classes = new ArrayList<>(
+                    StreamSupport.stream(ClassIndex.getAnnotated(Exercise.class).spliterator(), false).toList());
+            classes.sort(Comparator.comparing(Class::getName));
+            for (Class<?> aClass : classes) {
                 Exercise annotation = aClass.getAnnotation(Exercise.class);
-                System.out.printf("* %s\n", annotation.value());
+                System.out.printf("* [%s] %s\n", aClass.getName(), annotation.value());
             }
             return;
         }
