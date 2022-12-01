@@ -1,6 +1,6 @@
 package y22.m11.d24.carrent;
 
-import informatik.Exercise;
+import informatics.Exercise;
 
 @Exercise("CarRent 24.11.2022")
 public class CarRent {
