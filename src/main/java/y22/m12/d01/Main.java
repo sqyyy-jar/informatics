@@ -24,6 +24,7 @@ public class Main {
                  2) LKW""");
             System.out.print("=> ");
             final int option = scanner.nextInt();
+            // consume newline
             scanner.nextLine();
             switch (option) {
                 case 1 -> System.out.println("PKW-Erstellung:");
