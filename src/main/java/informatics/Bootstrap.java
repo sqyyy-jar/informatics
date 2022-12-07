@@ -37,6 +37,7 @@ public class Bootstrap {
         } catch (NoSuchMethodException e) {
             err("Could not find method 'static void run()'");
         } catch (InvocationTargetException e) {
+            System.out.println();
             System.err.println("=".repeat(60));
             e.getTargetException().printStackTrace();
             err("Could not invoke method 'static void run()'");
