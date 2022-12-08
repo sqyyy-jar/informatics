@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Page("01.12.2022")
-@Exercise("_")
+@Exercise("CarRent")
 public class Verwaltung {
     public static void run() {
         main(null);
