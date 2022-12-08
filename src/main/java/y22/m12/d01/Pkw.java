@@ -22,8 +22,8 @@ public class Pkw extends Fahrzeug {
             PKW {
               Farbe: %s,
               Kennzeichen: %s,
-              Kilometerstand: %fkm,
-              Kofferraum-Größe: %fl
+              Kilometerstand: %.2fkm,
+              Kofferraum-Größe: %.2fl
             }
             """.formatted(farbe, kennzeichen, kilometerstand, kofferraumGroesse);
     }
