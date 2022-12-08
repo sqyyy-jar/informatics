@@ -53,11 +53,11 @@ public class Lkw extends Fahrzeug {
             LKW {
               Farbe: %s,
               Kennzeichen: %s,
-              Kilometerstand: %fkm,
-              Laderaum: %fl,
-              Nutzlast: %fkg,
-              Kilometer-Preis: %f€,
-              Freie Kilometer pro Tag: %fkm
+              Kilometerstand: %.2fkm,
+              Laderaum: %.2fl,
+              Nutzlast: %.2fkg,
+              Kilometer-Preis: %.2f€,
+              Freie Kilometer pro Tag: %.2fkm
             }
             """.formatted(farbe, kennzeichen, kilometerstand, laderaum, nutzlast, kmPreis, freieKmProTag);
     }
