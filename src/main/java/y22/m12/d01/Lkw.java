@@ -49,8 +49,16 @@ public class Lkw extends Fahrzeug {
 
     @Override
     public String toString() {
-        return "Lkw{" + "laderaum=" + laderaum + ", nutzlast=" + nutzlast + ", kmPreis=" + kmPreis + ", freieKmProTag=" +
-            freieKmProTag + ", farbe='" + farbe + '\'' + ", kennzeichen='" + kennzeichen + '\'' + ", kilometerstand=" +
-            kilometerstand + '}';
+        return """
+            LKW {
+              Farbe: %s,
+              Kennzeichen: %s,
+              Kilometerstand: %fkm,
+              Laderaum: %fl,
+              Nutzlast: %fkg,
+              Kilometer-Preis: %f€,
+              Freie Kilometer pro Tag: %fkm
+            }
+            """.formatted(farbe, kennzeichen, kilometerstand, laderaum, nutzlast, kmPreis, freieKmProTag);
     }
 }

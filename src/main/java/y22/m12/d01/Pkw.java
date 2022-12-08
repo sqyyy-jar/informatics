@@ -18,7 +18,13 @@ public class Pkw extends Fahrzeug {
 
     @Override
     public String toString() {
-        return "Pkw{" + "kofferraumGroesse=" + kofferraumGroesse + ", farbe='" + farbe + '\'' + ", kennzeichen='" + kennzeichen +
-            '\'' + ", kilometerstand=" + kilometerstand + '}';
+        return """
+            PKW {
+              Farbe: %s,
+              Kennzeichen: %s,
+              Kilometerstand: %fkm,
+              Kofferraum-Größe: %fl
+            }
+            """.formatted(farbe, kennzeichen, kilometerstand, kofferraumGroesse);
     }
 }
