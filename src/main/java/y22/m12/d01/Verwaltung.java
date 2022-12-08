@@ -2,18 +2,12 @@ package y22.m12.d01;
 
 import com.github.sqyyy.jnb.Entrypoint;
 import com.github.sqyyy.jnb.Page;
-import informatics.Exercise;
 
 import java.sql.Date;
 import java.util.Scanner;
 
 @Page("01.12.2022")
-@Exercise("CarRent")
 public class Verwaltung {
-    public static void run() {
-        main(null);
-    }
-
     @Entrypoint
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
