@@ -5,8 +5,6 @@ import com.github.sqyyy.jnb.Page;
 import informatics.Exercise;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 @Page("01.12.2022")
@@ -19,9 +17,23 @@ public class Verwaltung {
     @Entrypoint
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        final List<Kunde> kunden = new ArrayList<>();
-        final List<Pkw> pkws = new ArrayList<>();
-        final List<Lkw> lkws = new ArrayList<>();
+        // Memory
+        final int kundeMemSize = 3;
+        int kundeMem = 0;
+        Kunde kunde0 = null;
+        Kunde kunde1 = null;
+        Kunde kunde2 = null;
+        final int pkwMemSize = 3;
+        int pkwMem = 0;
+        Pkw pkw0 = null;
+        Pkw pkw1 = null;
+        Pkw pkw2 = null;
+        final int lkwMemSize = 3;
+        int lkwMem = 0;
+        Lkw lkw0 = null;
+        Lkw lkw1 = null;
+        Lkw lkw2 = null;
+        // Memory
         outer:
         while (true) {
             System.out.println("""
@@ -36,9 +48,45 @@ public class Verwaltung {
                 case "0", "exit" -> {
                     break outer;
                 }
-                case "1", "kunde" -> kunden.add(readKunde(scanner));
-                case "2", "pkw" -> pkws.add(readPkw(scanner));
-                case "3", "lkw" -> lkws.add(readLkw(scanner));
+                case "1", "kunde" -> {
+                    if (kundeMem >= kundeMemSize) {
+                        System.out.println("Es konnte nicht genug Speicher gefunden werden.\n");
+                        continue;
+                    }
+                    final Kunde kunde = readKunde(scanner);
+                    switch (kundeMem) {
+                        case 0 -> kunde0 = kunde;
+                        case 1 -> kunde1 = kunde;
+                        case 2 -> kunde2 = kunde;
+                    }
+                    kundeMem++;
+                }
+                case "2", "pkw" -> {
+                    if (pkwMem >= pkwMemSize) {
+                        System.out.println("Es konnte nicht genug Speicher gefunden werden.\n");
+                        continue;
+                    }
+                    final Pkw pkw = readPkw(scanner);
+                    switch (pkwMem) {
+                        case 0 -> pkw0 = pkw;
+                        case 1 -> pkw1 = pkw;
+                        case 2 -> pkw2 = pkw;
+                    }
+                    pkwMem++;
+                }
+                case "3", "lkw" -> {
+                    if (lkwMem >= lkwMemSize) {
+                        System.out.println("Es konnte nicht genug Speicher gefunden werden.\n");
+                        continue;
+                    }
+                    final Lkw lkw = readLkw(scanner);
+                    switch (lkwMem) {
+                        case 0 -> lkw0 = lkw;
+                        case 1 -> lkw1 = lkw;
+                        case 2 -> lkw2 = lkw;
+                    }
+                    lkwMem++;
+                }
                 default -> {
                     continue;
                 }
@@ -46,16 +94,31 @@ public class Verwaltung {
             System.out.println();
         }
         System.out.println("Kunden:");
-        for (final Kunde kunde : kunden) {
-            System.out.println(kunde);
+        for (int i = 0; i < Math.min(kundeMemSize, kundeMem); i++) {
+            System.out.println(switch (i) {
+                case 0 -> kunde0;
+                case 1 -> kunde1;
+                case 2 -> kunde2;
+                default -> null;
+            });
         }
         System.out.println("PKWs:");
-        for (final Pkw pkw : pkws) {
-            System.out.println(pkw);
+        for (int i = 0; i < Math.min(pkwMemSize, pkwMem); i++) {
+            System.out.println(switch (i) {
+                case 0 -> pkw0;
+                case 1 -> pkw1;
+                case 2 -> pkw2;
+                default -> null;
+            });
         }
         System.out.println("LKWs:");
-        for (final Lkw lkw : lkws) {
-            System.out.println(lkw);
+        for (int i = 0; i < Math.min(lkwMemSize, lkwMem); i++) {
+            System.out.println(switch (i) {
+                case 0 -> lkw0;
+                case 1 -> lkw1;
+                case 2 -> lkw2;
+                default -> null;
+            });
         }
     }
 
@@ -80,6 +143,7 @@ public class Verwaltung {
         final double kilometerstand = scanner.nextDouble();
         System.out.print("Laderaum: ");
         final double kofferraumGroesse = scanner.nextDouble();
+        scanner.nextLine();
         return new Pkw(farbe, kennzeichen, kilometerstand, kofferraumGroesse);
     }
 
@@ -99,6 +163,7 @@ public class Verwaltung {
         final double kmPreis = scanner.nextDouble();
         System.out.print("Freie Kilometer pro Tag: ");
         final double freieKmProTag = scanner.nextDouble();
+        scanner.nextLine();
         return new Lkw(farbe, kennzeichen, kilometerstand, laderaum, nutzlast, kmPreis, freieKmProTag);
     }
 }
