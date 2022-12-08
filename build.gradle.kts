@@ -11,8 +11,8 @@ repositories {
     maven {
         url = uri("https://maven.pkg.github.com/sqyyy-jar/java-notebooks")
         credentials {
-            username = System.getenv("GITHUB_USERNAME")
-            password = System.getenv("GITHUB_TOKEN")
+            username = System.getenv("GRADLE_GITHUB_USERNAME")
+            password = System.getenv("GRADLE_GITHUB_TOKEN")
         }
     }
 }
