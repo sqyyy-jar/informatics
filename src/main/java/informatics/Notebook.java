@@ -3,15 +3,15 @@ package informatics;
 import com.github.sqyyy.jnb.JavaNotebooks;
 import com.github.sqyyy.jnb.Page;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class Notebook {
-    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws Throwable {
         if (args.length == 0) {
             showHelp();
             return;
@@ -59,14 +59,14 @@ public class Notebook {
             return;
         }
         System.out.println("The following entrypoints were found:");
-        final List<Method> entrypointMethods = new ArrayList<>(JavaNotebooks.getEntrypointMethods());
-        entrypointMethods.sort(Comparator.comparing(it -> it.getDeclaringClass().getName()));
-        for (final Method entrypointMethod : entrypointMethods) {
-            System.out.printf("* [%s] %s\n", entrypointMethod.getDeclaringClass().getName(), entrypointMethod.getName());
+        final List<Class<?>> entrypointClasses = new ArrayList<>(JavaNotebooks.getEntrypoints().keySet());
+        entrypointClasses.sort(Comparator.comparing(it -> it.getAnnotation(Page.class).value()));
+        for (final Class<?> entrypointClass : entrypointClasses) {
+            System.out.printf("* [%s] %s\n", entrypointClass.getName(), entrypointClass.getAnnotation(Page.class).value());
         }
     }
 
-    private static void runSubcommand(String[] args) throws InvocationTargetException, IllegalAccessException {
+    private static void runSubcommand(String[] args) throws Throwable {
         if (args.length < 2) {
             showHelp();
             return;
@@ -84,31 +84,28 @@ public class Notebook {
             System.out.println("There are several entrypoint matching this criteria");
             return;
         }
-        final ArrayList<Method> entrypointMethods = new ArrayList<>(JavaNotebooks.getEntrypointMethodsByClass(pageClass));
-        final int size = entrypointMethods.size();
-        if (size == 0) {
+        final MethodHandle entrypointHandle = JavaNotebooks.getEntrypointByClass(pageClass);
+        if (entrypointHandle == null) {
             System.out.println("The entrypoint could not be found");
-        } else if (size == 1) {
-            final Method entrypoint = entrypointMethods.get(0);
-            final int parameterCount = entrypoint.getParameterCount();
-            if (parameterCount == 0) {
-                if (args.length > 2) {
-                    System.out.println("The entrypoint does not support arguments");
-                    return;
-                }
-                entrypoint.invoke(null);
-            } else if (parameterCount == 1) {
-                if (args.length == 2) {
-                    entrypoint.invoke(null, (Object) new String[0]);
-                    return;
-                }
-                final String[] newArgs = Arrays.copyOfRange(args, 2, args.length);
-                entrypoint.invoke(null, (Object) newArgs);
-            } else {
-                System.out.println("The entrypoint is invalid");
+            return;
+        }
+        final MethodType entrypointType = entrypointHandle.type();
+        final int parameterCount = entrypointType.parameterCount();
+        if (parameterCount == 0) {
+            if (args.length > 2) {
+                System.out.println("The entrypoint does not support arguments");
+                return;
             }
+            entrypointHandle.invoke();
+        } else if (parameterCount == 1) {
+            if (args.length == 2) {
+                entrypointHandle.invoke((Object) new String[0]);
+                return;
+            }
+            final String[] newArgs = Arrays.copyOfRange(args, 2, args.length);
+            entrypointHandle.invoke((Object) newArgs);
         } else {
-            System.out.println("There are several entrypoint matching this name");
+            System.out.println("The entrypoint is invalid");
         }
     }
 }
