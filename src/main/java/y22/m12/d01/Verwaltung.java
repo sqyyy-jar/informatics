@@ -43,7 +43,9 @@ public class Verwaltung {
                  2) Etwas registrieren
                  3) Etwas modifizieren""");
             System.out.print(">>> ");
-            switch (scanner.nextLine().toLowerCase()) {
+            final String choice = scanner.nextLine().toLowerCase();
+            System.out.println();
+            switch (choice) {
                 case "0", "exit" -> {
                     return false;
                 }
@@ -66,110 +68,112 @@ public class Verwaltung {
     }
 
     private static void readAusgeben(Scanner scanner) {
-        outer:
-        while (true) {
-            System.out.println("""
-                Was würdest du gerne ausgeben?
-                 1) Kunde
-                 2) PKW
-                 3) LKW""");
-            System.out.print(">>> ");
-            switch (scanner.nextLine().toLowerCase()) {
-                case "1", "kunde" -> {
-                    System.out.println("Welchen Kunden würdest du gerne ausgeben? (1..3)");
-                    final int kunde = scanner.nextInt();
-                    switch (kunde) {
-                        case 1 -> {
-                            if (kundeMem >= 1) {
-                                System.out.println(kunde0);
-                            } else {
-                                break;
-                            }
-                            break outer;
+        System.out.println("""
+            Was würdest du gerne ausgeben?
+             1) Kunde
+             2) PKW
+             3) LKW""");
+        System.out.print(">>> ");
+        final String choice = scanner.nextLine().toLowerCase();
+        System.out.println();
+        switch (choice) {
+            case "1", "kunde" -> {
+                System.out.println("Welchen Kunden würdest du gerne ausgeben? (1..3)");
+                System.out.print(">>> ");
+                final int kunde = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println();
+                switch (kunde) {
+                    case 1 -> {
+                        if (kundeMem >= 1) {
+                            System.out.println(kunde0);
+                        } else {
+                            break;
                         }
-                        case 2 -> {
-                            if (kundeMem >= 2) {
-                                System.out.println(kunde1);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
-                        case 3 -> {
-                            if (kundeMem >= 3) {
-                                System.out.println(kunde2);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
+                        return;
                     }
-                    System.out.println("Dieser Kunde ist noch nicht registriert.");
-                }
-                case "2", "pkw" -> {
-                    System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
-                    final int pkw = scanner.nextInt();
-                    switch (pkw) {
-                        case 1 -> {
-                            if (pkwMem >= 1) {
-                                System.out.println(pkw0);
-                            } else {
-                                break;
-                            }
-                            break outer;
+                    case 2 -> {
+                        if (kundeMem >= 2) {
+                            System.out.println(kunde1);
+                        } else {
+                            break;
                         }
-                        case 2 -> {
-                            if (pkwMem >= 2) {
-                                System.out.println(pkw1);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
-                        case 3 -> {
-                            if (pkwMem >= 3) {
-                                System.out.println(pkw2);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
+                        return;
                     }
-                    System.out.println("Dieser PKW ist noch nicht registriert.");
-                }
-                case "3", "lkw" -> {
-                    System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
-                    final int lkw = scanner.nextInt();
-                    switch (lkw) {
-                        case 1 -> {
-                            if (lkwMem >= 1) {
-                                System.out.println(lkw0);
-                            } else {
-                                break;
-                            }
-                            break outer;
+                    case 3 -> {
+                        if (kundeMem >= 3) {
+                            System.out.println(kunde2);
+                        } else {
+                            break;
                         }
-                        case 2 -> {
-                            if (lkwMem >= 2) {
-                                System.out.println(lkw1);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
-                        case 3 -> {
-                            if (lkwMem >= 3) {
-                                System.out.println(lkw2);
-                            } else {
-                                break;
-                            }
-                            break outer;
-                        }
+                        return;
                     }
-                    System.out.println("Dieser LKW ist noch nicht registriert.");
                 }
-                default -> System.out.println();
+                System.out.println("Dieser Kunde ist noch nicht registriert.\n");
             }
+            case "2", "pkw" -> {
+                System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
+                final int pkw = scanner.nextInt();
+                switch (pkw) {
+                    case 1 -> {
+                        if (pkwMem >= 1) {
+                            System.out.println(pkw0);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                    case 2 -> {
+                        if (pkwMem >= 2) {
+                            System.out.println(pkw1);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                    case 3 -> {
+                        if (pkwMem >= 3) {
+                            System.out.println(pkw2);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                }
+                System.out.println("Dieser PKW ist noch nicht registriert.");
+            }
+            case "3", "lkw" -> {
+                System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
+                final int lkw = scanner.nextInt();
+                switch (lkw) {
+                    case 1 -> {
+                        if (lkwMem >= 1) {
+                            System.out.println(lkw0);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                    case 2 -> {
+                        if (lkwMem >= 2) {
+                            System.out.println(lkw1);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                    case 3 -> {
+                        if (lkwMem >= 3) {
+                            System.out.println(lkw2);
+                        } else {
+                            break;
+                        }
+                        return;
+                    }
+                }
+                System.out.println("Dieser LKW ist noch nicht registriert.");
+            }
+            default -> System.out.println();
         }
     }
 
@@ -182,7 +186,9 @@ public class Verwaltung {
                  2) PKW
                  3) LKW""");
             System.out.print(">>> ");
-            switch (scanner.nextLine().toLowerCase()) {
+            final String choice = scanner.nextLine().toLowerCase();
+            System.out.println();
+            switch (choice) {
                 case "1", "kunde" -> {
                     if (kundeMem >= kundeMemSize) {
                         System.out.println("Es konnte nicht genug Speicher gefunden werden.\n");
@@ -228,6 +234,7 @@ public class Verwaltung {
                 default -> System.out.println();
             }
         }
+        System.out.println();
     }
 
     private static void readModifizieren(Scanner scanner) {
