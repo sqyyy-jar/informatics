@@ -23,9 +23,9 @@ repositories {
 
 dependencies {
     implementation("org.atteo.classindex:classindex:3.13")
-    implementation("com.github.sqyyy.jnb:core:0.1.4-alpha")
+    implementation("com.github.sqyyy.jnb:core:0.2.1-alpha")
     annotationProcessor("org.atteo.classindex:classindex:3.13")
-    annotationProcessor("com.github.sqyyy.jnb:processor:0.1.4-alpha")
+    annotationProcessor("com.github.sqyyy.jnb:processor:0.2.1-alpha")
 }
 
 tasks.jar {
