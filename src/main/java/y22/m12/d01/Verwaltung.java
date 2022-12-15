@@ -42,7 +42,7 @@ public class Verwaltung {
                  1) Etwas ausgeben
                  2) Etwas registrieren
                  3) Etwas modifizieren""");
-            System.out.print(">>> ");
+            prompt();
             final String choice = scanner.nextLine().toLowerCase();
             System.out.println();
             switch (choice) {
@@ -73,105 +73,39 @@ public class Verwaltung {
              1) Kunde
              2) PKW
              3) LKW""");
-        System.out.print(">>> ");
+        prompt();
         final String choice = scanner.nextLine().toLowerCase();
         System.out.println();
         switch (choice) {
             case "1", "kunde" -> {
                 System.out.println("Welchen Kunden würdest du gerne ausgeben? (1..3)");
-                System.out.print(">>> ");
-                final int kunde = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println();
-                switch (kunde) {
-                    case 1 -> {
-                        if (kundeMem >= 1) {
-                            System.out.println(kunde0);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 2 -> {
-                        if (kundeMem >= 2) {
-                            System.out.println(kunde1);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 3 -> {
-                        if (kundeMem >= 3) {
-                            System.out.println(kunde2);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
+                prompt();
+                final int kundeI = chooseKunde(scanner);
+                if (kundeI == -1) {
+                    break;
                 }
-                System.out.println("Dieser Kunde ist noch nicht registriert.\n");
+                final Kunde kunde = getKunde(kundeI);
+                System.out.println(kunde);
             }
             case "2", "pkw" -> {
                 System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
-                final int pkw = scanner.nextInt();
-                switch (pkw) {
-                    case 1 -> {
-                        if (pkwMem >= 1) {
-                            System.out.println(pkw0);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 2 -> {
-                        if (pkwMem >= 2) {
-                            System.out.println(pkw1);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 3 -> {
-                        if (pkwMem >= 3) {
-                            System.out.println(pkw2);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
+                prompt();
+                final int pkwI = choosePkw(scanner);
+                if (pkwI == -1) {
+                    break;
                 }
-                System.out.println("Dieser PKW ist noch nicht registriert.");
+                final Pkw pkw = getPkw(pkwI);
+                System.out.println(pkw);
             }
             case "3", "lkw" -> {
                 System.out.println("Welchen PKW würdest du gerne ausgeben? (1..3)");
-                final int lkw = scanner.nextInt();
-                switch (lkw) {
-                    case 1 -> {
-                        if (lkwMem >= 1) {
-                            System.out.println(lkw0);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 2 -> {
-                        if (lkwMem >= 2) {
-                            System.out.println(lkw1);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
-                    case 3 -> {
-                        if (lkwMem >= 3) {
-                            System.out.println(lkw2);
-                        } else {
-                            break;
-                        }
-                        return;
-                    }
+                prompt();
+                final int lkwI = chooseLkw(scanner);
+                if (lkwI == -1) {
+                    break;
                 }
-                System.out.println("Dieser LKW ist noch nicht registriert.");
+                final Lkw lkw = getLkw(lkwI);
+                System.out.println(lkw);
             }
             default -> System.out.println();
         }
@@ -185,7 +119,7 @@ public class Verwaltung {
                  1) Kunde
                  2) PKW
                  3) LKW""");
-            System.out.print(">>> ");
+            prompt();
             final String choice = scanner.nextLine().toLowerCase();
             System.out.println();
             switch (choice) {
@@ -195,11 +129,7 @@ public class Verwaltung {
                         break outer;
                     }
                     final Kunde kunde = readKunde(scanner);
-                    switch (kundeMem) {
-                        case 0 -> kunde0 = kunde;
-                        case 1 -> kunde1 = kunde;
-                        case 2 -> kunde2 = kunde;
-                    }
+                    setKunde(kundeMem, kunde);
                     kundeMem++;
                     break outer;
                 }
@@ -209,11 +139,7 @@ public class Verwaltung {
                         break outer;
                     }
                     final Pkw pkw = readPkw(scanner);
-                    switch (pkwMem) {
-                        case 0 -> pkw0 = pkw;
-                        case 1 -> pkw1 = pkw;
-                        case 2 -> pkw2 = pkw;
-                    }
+                    setPkw(pkwMem, pkw);
                     pkwMem++;
                     break outer;
                 }
@@ -223,11 +149,7 @@ public class Verwaltung {
                         break outer;
                     }
                     final Lkw lkw = readLkw(scanner);
-                    switch (lkwMem) {
-                        case 0 -> lkw0 = lkw;
-                        case 1 -> lkw1 = lkw;
-                        case 2 -> lkw2 = lkw;
-                    }
+                    setLkw(lkwMem, lkw);
                     lkwMem++;
                     break outer;
                 }
@@ -238,7 +160,129 @@ public class Verwaltung {
     }
 
     private static void readModifizieren(Scanner scanner) {
-        System.out.println("Unimplementiert");
+        System.out.println("""
+            Was würdest du gerne modifizieren?
+             1) Kunde
+             2) PKW
+             3) LKW""");
+        prompt();
+        final String choice = scanner.nextLine().toLowerCase();
+        System.out.println();
+        switch (choice) {
+            case "1", "kunde", "3", "lkw" -> System.out.println("Unimplemented");
+            case "2", "pkw" -> {
+                System.out.println("""
+                    Was würdest du gerne tun?
+                     1) Tanken""");
+                prompt();
+                final String option = scanner.nextLine().toLowerCase();
+                System.out.println();
+                switch (option) {
+                    case "1", "tanken" -> {
+                        System.out.println("Welchen PKW würdest du gerne tanken? (1..3)");
+                        prompt();
+                        final int pkwI = choosePkw(scanner);
+                        System.out.println();
+                        if (pkwI == -1) {
+                            break;
+                        }
+                        final Pkw pkw = getPkw(pkwI);
+                        System.out.println("Wie viel würdest du gerne tanken?");
+                        prompt();
+                        final double tank = scanner.nextDouble();
+                        final double oldTank = pkw.getTank();
+                        pkw.setTank(Math.min(pkw.getTank() + tank, pkw.getMaxTank()));
+                        System.out.println("Es wurden " + (pkw.getTank() - oldTank) + "l getankt.\n");
+                    }
+                }
+            }
+            default -> System.out.println();
+        }
+    }
+
+    private static void prompt() {
+        System.out.print(">>> ");
+    }
+
+    private static int chooseKunde(Scanner scanner) {
+        final int kunde = scanner.nextInt();
+        scanner.nextLine();
+        if (kunde < 1 || kunde > kundeMemSize) {
+            System.out.println("Dieser Kunde ist noch nicht registriert.");
+            return -1;
+        }
+        return kunde - 1;
+    }
+
+    private static int choosePkw(Scanner scanner) {
+        final int pkw = scanner.nextInt();
+        scanner.nextLine();
+        if (pkw < 1 || pkw > pkwMemSize) {
+            System.out.println("Dieser PKW ist noch nicht registriert.");
+            return -1;
+        }
+        return pkw - 1;
+    }
+
+    private static int chooseLkw(Scanner scanner) {
+        final int lkw = scanner.nextInt();
+        scanner.nextLine();
+        if (lkw < 1 || lkw > lkwMemSize) {
+            System.out.println("Dieser LKW ist noch nicht registriert.");
+            return -1;
+        }
+        return lkw - 1;
+    }
+
+    private static Kunde getKunde(int index) {
+        return switch (index) {
+            case 0 -> kunde0;
+            case 1 -> kunde1;
+            case 2 -> kunde2;
+            default -> null;
+        };
+    }
+
+    private static Pkw getPkw(int index) {
+        return switch (index) {
+            case 0 -> pkw0;
+            case 1 -> pkw1;
+            case 2 -> pkw2;
+            default -> null;
+        };
+    }
+
+    private static Lkw getLkw(int index) {
+        return switch (index) {
+            case 0 -> lkw0;
+            case 1 -> lkw1;
+            case 2 -> lkw2;
+            default -> null;
+        };
+    }
+
+    private static void setKunde(int index, Kunde kunde) {
+        switch (index) {
+            case 0 -> kunde0 = kunde;
+            case 1 -> kunde1 = kunde;
+            case 2 -> kunde2 = kunde;
+        }
+    }
+
+    private static void setPkw(int index, Pkw pkw) {
+        switch (index) {
+            case 0 -> pkw0 = pkw;
+            case 1 -> pkw1 = pkw;
+            case 2 -> pkw2 = pkw;
+        }
+    }
+
+    private static void setLkw(int index, Lkw lkw) {
+        switch (index) {
+            case 0 -> lkw0 = lkw;
+            case 1 -> lkw1 = lkw;
+            case 2 -> lkw2 = lkw;
+        }
     }
 
     private static Kunde readKunde(Scanner scanner) {
@@ -258,12 +302,16 @@ public class Verwaltung {
         final String farbe = scanner.nextLine();
         System.out.print("Kennzeichen: ");
         final String kennzeichen = scanner.nextLine();
-        System.out.print("Kilometerstand: ");
+        System.out.print("Kilometerstand (km): ");
         final double kilometerstand = scanner.nextDouble();
-        System.out.print("Laderaum: ");
+        System.out.print("Tank (l): ");
+        final double tank = scanner.nextDouble();
+        System.out.print("max. Tank (l): ");
+        final double maxTank = scanner.nextDouble();
+        System.out.print("Laderaum (l): ");
         final double kofferraumGroesse = scanner.nextDouble();
         scanner.nextLine();
-        return new Pkw(farbe, kennzeichen, kilometerstand, kofferraumGroesse);
+        return new Pkw(farbe, kennzeichen, kilometerstand, tank, maxTank, kofferraumGroesse);
     }
 
     private static Lkw readLkw(Scanner scanner) {
@@ -274,6 +322,10 @@ public class Verwaltung {
         final String kennzeichen = scanner.nextLine();
         System.out.print("Kilometerstand: ");
         final double kilometerstand = scanner.nextDouble();
+        System.out.print("Tank (l): ");
+        final double tank = scanner.nextDouble();
+        System.out.print("max. Tank (l): ");
+        final double maxTank = scanner.nextDouble();
         System.out.print("Laderaum: ");
         final double laderaum = scanner.nextDouble();
         System.out.print("Nutzlast: ");
@@ -283,6 +335,6 @@ public class Verwaltung {
         System.out.print("Freie Kilometer pro Tag: ");
         final double freieKmProTag = scanner.nextDouble();
         scanner.nextLine();
-        return new Lkw(farbe, kennzeichen, kilometerstand, laderaum, nutzlast, kmPreis, freieKmProTag);
+        return new Lkw(farbe, kennzeichen, kilometerstand, tank, maxTank, laderaum, nutzlast, kmPreis, freieKmProTag);
     }
 }

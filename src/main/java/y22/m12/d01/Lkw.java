@@ -6,9 +6,10 @@ public class Lkw extends Fahrzeug {
     private double kmPreis;
     private double freieKmProTag;
 
-    public Lkw(String farbe, String kennzeichen, double kilometerstand, double laderaum, double nutzlast, double kmPreis,
+    public Lkw(String farbe, String kennzeichen, double kilometerstand, double tank, double maxTank, double laderaum,
+               double nutzlast, double kmPreis,
                double freieKmProTag) {
-        super(farbe, kennzeichen, kilometerstand);
+        super(farbe, kennzeichen, kilometerstand, tank, maxTank);
         this.laderaum = laderaum;
         this.nutzlast = nutzlast;
         this.kmPreis = kmPreis;
@@ -54,11 +55,13 @@ public class Lkw extends Fahrzeug {
               Farbe: %s,
               Kennzeichen: %s,
               Kilometerstand: %.2fkm,
+              Tank: %.2fl,
+              max. Tank: %.2fl,
               Laderaum: %.2fl,
               Nutzlast: %.2fkg,
               Kilometer-Preis: %.2f€,
               Freie Kilometer pro Tag: %.2fkm
             }
-            """.formatted(farbe, kennzeichen, kilometerstand, laderaum, nutzlast, kmPreis, freieKmProTag);
+            """.formatted(farbe, kennzeichen, kilometerstand, tank, maxTank, laderaum, nutzlast, kmPreis, freieKmProTag);
     }
 }
