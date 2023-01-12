@@ -11,6 +11,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Notebook {
+    private static final String ANSI_BOLD = "\033[1m";
+    private static final String ANSI_YELLOW = "\033[33m";
+    private static final String ANSI_BOLD_RESET = "\033[22m";
+    private static final String ANSI_COLOR_RESET = "\033[0m";
+
     public static void main(String[] args) throws Throwable {
         if (args.length == 0) {
             showHelp();
@@ -21,22 +26,27 @@ public class Notebook {
             case "pages", "p" -> pagesSubcommand(args);
             case "entrypoints", "e" -> entrypointsSubcommand(args);
             case "run", "r" -> runSubcommand(args);
+            case "desc", "d" -> descSubcommand(args);
             default -> showHelp();
         }
     }
 
     private static void showHelp() {
-        System.out.println("""
+        final String y = ANSI_BOLD + ANSI_YELLOW;
+        final String r = ANSI_BOLD_RESET + ANSI_COLOR_RESET;
+        System.out.printf("""
             My java notebook for informatics
-                        
-            USAGE:
-                <notebook> [SUBCOMMAND]
-                        
-            SUBCOMMANDS:
+                    
+            %sUSAGE%s:
+                <notebook> [SUBCOMMAND] [ARGS] [PROGRAM ARGS]
+                    
+            %sSUBCOMMANDS%s:
                 pages, p        List all pages
                 entrypoints, e  List all entrypoints
-                run, r [PAGE]   Run an entrypoint
-            """);
+                run, r [PAGE]   Run the entrypoint in the specified page
+                desc, d [PAGE]  Shows the description of the specified page
+            %n""", y, r, y, r
+        );
     }
 
     private static void pagesSubcommand(String[] args) {
@@ -106,6 +116,30 @@ public class Notebook {
             entrypointHandle.invoke((Object) newArgs);
         } else {
             System.out.println("The entrypoint is invalid");
+        }
+    }
+
+    private static void descSubcommand(String[] args) {
+        final String y = ANSI_BOLD + ANSI_YELLOW;
+        final String r = ANSI_BOLD_RESET + ANSI_COLOR_RESET;
+        if (args.length < 2) {
+            showHelp();
+            return;
+        }
+        final String page = args[1];
+        final List<Class<?>> pageClasses = JavaNotebooks.getPageClassesByNameIgnoreCase(page);
+        final int pageCount = pageClasses.size();
+        if (pageCount == 0) {
+            System.out.println("The page could not be found");
+        } else if (pageCount == 1) {
+            final Page annotation = pageClasses.get(0).getAnnotation(Page.class);
+            System.out.printf("%sNAME%s:\n", y, r);
+            System.out.println(annotation.value());
+            System.out.println();
+            System.out.printf("%sDESCRIPTION%s:\n", y, r);
+            System.out.println(annotation.description().isBlank() ? "<no description provided>" : annotation.description());
+        } else {
+            System.out.println("There are several entrypoint matching this criteria");
         }
     }
 }
