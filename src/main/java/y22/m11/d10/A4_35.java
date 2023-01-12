@@ -1,12 +1,14 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
+import com.github.sqyyy.jnb.Entrypoint;
+import com.github.sqyyy.jnb.Page;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.35 - Wochentag Rechner")
+@Page(value = "A4.35", description = "Wochentag Rechner")
 public class A4_35 {
-    public static void run() {
+    @Entrypoint
+    public static void main() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Tag   : ");
         int t = scanner.nextInt();
