@@ -1,12 +1,14 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
+import com.github.sqyyy.jnb.Entrypoint;
+import com.github.sqyyy.jnb.Page;
 
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.36 - Ostersonntag berechnen")
+@Page(value = "A4.36", description = "Ostersonntag berechnen")
 public class A4_36 {
-    public static void run() {
+    @Entrypoint
+    public static void main() {
         System.out.print("Jahr: ");
         int j = new Scanner(System.in).nextInt();
         if (j < 1 || j > 8202) {
