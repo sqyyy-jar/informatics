@@ -35,24 +35,24 @@ public class Fachbereich {
         return vorlesung1;
     }
 
-    public void setVorlesung1(Vorlesung vorlesung1) {
-        this.vorlesung1 = vorlesung1;
+    public void setVorlesung1(String nummer, String titel) {
+        this.vorlesung1 = new Vorlesung(nummer, titel);
     }
 
     public Vorlesung getVorlesung2() {
         return vorlesung2;
     }
 
-    public void setVorlesung2(Vorlesung vorlesung2) {
-        this.vorlesung2 = vorlesung2;
+    public void setVorlesung2(String nummer, String titel) {
+        this.vorlesung2 = new Vorlesung(nummer, titel);
     }
 
     public Vorlesung getVorlesung3() {
         return vorlesung3;
     }
 
-    public void setVorlesung3(Vorlesung vorlesung3) {
-        this.vorlesung3 = vorlesung3;
+    public void setVorlesung3(String nummer, String titel) {
+        this.vorlesung3 = new Vorlesung(nummer, titel);
     }
 
     @Override
