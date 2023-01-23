@@ -8,8 +8,8 @@ public class Verwaltung {
     @Entrypoint
     public static void main() {
         Fachbereich mathe = new Fachbereich(0, "Mathe");
-        mathe.setVorlesung1("ABC1", "Algebra");
-        mathe.setVorlesung2("ABC2", "Matrizen");
+        mathe.fuegeVerlesungHinzu(new Vorlesung("ABC1", "Algebra"));
+        mathe.fuegeVerlesungHinzu(new Vorlesung("ABC2", "Matrizen"));
         System.out.println(mathe);
     }
 }
