@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "informatics"
-version = "1.0-SNAPSHOT"
+version = "1.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -23,9 +23,9 @@ repositories {
 
 dependencies {
     implementation("org.atteo.classindex:classindex:3.13")
-    implementation("com.github.sqyyy.jnb:core:0.3.0-alpha")
+    implementation("com.github.sqyyy.jnb:core:1.0.1")
     annotationProcessor("org.atteo.classindex:classindex:3.13")
-    annotationProcessor("com.github.sqyyy.jnb:processor:0.3.0-alpha")
+    annotationProcessor("com.github.sqyyy.jnb:processor:1.0.1")
 }
 
 tasks.jar {
