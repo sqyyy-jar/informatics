@@ -57,6 +57,15 @@ public class ArrayUebung {
             System.out.println(v);
         }
 
+        var i = 0;
+        while (i < b.length) {
+            System.out.println(b[i++]);
+        }
+
+        var j = b.length;
+        while (j > 0) {
+            System.out.println(b[--j]);
+        }
     }
 
     @Entrypoint
