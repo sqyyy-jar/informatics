@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Page("16.02.2023")
-// Erstellt eine neue Klasse
+// Deklariert eine neue Klasse namens MitarbeiterArrayTest
 public class MitarbeiterArrayTest {
     // Deklariert ein neues Attribut vom Typ Mitarbeiter[] namens mitarbeiter
     private Mitarbeiter[] mitarbeiter;
 
-    // Definiert einen neuen Konstruktor, welcher eine IOException werfen kann
+    // Deklariert einen neuen Konstruktor, welcher eine IOException werfen kann und keine Parameter engegennimmt
     public MitarbeiterArrayTest() throws IOException {
         // Deklariert eine Variable vom Typ BufferedReader namens br und initialisiert diese mit einer neuen Instanz vom Typ
         // BufferedReader; der Konstruktor aufruf von BufferedReader erhält außerdem einen neuen InputStreamReader, welcher
@@ -59,7 +59,7 @@ public class MitarbeiterArrayTest {
         new MitarbeiterArrayTest();
     }
 
-    // Definiert eine neue Methode namens ausgabe
+    // Definiert eine neue Methode namens ausgabe, die keine Parameter entgegennimmt und nichts zurückgibt
     public void ausgabe() {
         // Gibt eine leere Zeile aus
         System.out.println();
@@ -70,6 +70,7 @@ public class MitarbeiterArrayTest {
         for (int i = 0; i < mitarbeiter.length; i++) {
             // Summiert die Gehälter der Mitarbeiter
             sum += mitarbeiter[i].getGehalt();
+            // Ruft die Methode ausgeben für den Mitarbeiter am Index i auf
             mitarbeiter[i].ausgeben();
         }
         // Gibt das Durchschnittsgehalt der Mitarbeiter aus
