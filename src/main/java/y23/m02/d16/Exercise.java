@@ -3,6 +3,7 @@ package y23.m02.d16;
 import com.github.sqyyy.jnb.Entrypoint;
 import com.github.sqyyy.jnb.Page;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 @Page("16.02.2023/2")
@@ -39,10 +40,12 @@ public class Exercise {
 
         // 3.
         int[][] matrix = new int[10][10];
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 10; y++) {
-                matrix[x][y] = x + y + 1;
+        for (int y = 1; y <= 10; y++) {
+            for (int x = 1; x <= 10; x++) {
+                matrix[y - 1][x - 1] = x * y;
+                System.out.printf("%4d", x * y);
             }
+            System.out.println();
         }
     }
 }
