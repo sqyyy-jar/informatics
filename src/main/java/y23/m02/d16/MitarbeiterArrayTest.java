@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-@Page("16.02.2023")
+@Page("16.02.2023/1")
 // Deklariert eine neue Klasse namens MitarbeiterArrayTest
 public class MitarbeiterArrayTest {
     // Deklariert ein neues Attribut vom Typ Mitarbeiter[] namens mitarbeiter
