@@ -3,14 +3,18 @@ package y23.m02.d16;
 import com.github.sqyyy.jnb.Entrypoint;
 import com.github.sqyyy.jnb.Page;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 @Page("16.02.2023/2")
 public class Exercise {
     @Entrypoint
     public static void main() {
-        int[] array = IntStream.range(0, 21).toArray();
+        int[] array = IntStream.rangeClosed(1, 20).toArray();
+        // alternativ:
+        // int[] array = new int[20];
+        // for (int i = 0; i < array.length; i++) {
+        //     array[i] = i + 1;
+        // }
 
         // 1.
         for (int i : array) {
