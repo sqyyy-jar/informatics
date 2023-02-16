@@ -65,7 +65,7 @@ public class MitarbeiterArrayTest {
         System.out.println();
         // Gibt den Text aus
         System.out.println("############################");
-        int sum = 0;
+        double sum = 0;
         // Ruft für jeden Mitarbeiter im Array in dem Attribut mitarbeiter die ausgeben Methode auf
         for (int i = 0; i < mitarbeiter.length; i++) {
             // Summiert die Gehälter der Mitarbeiter
