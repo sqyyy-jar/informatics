@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 @Page("02.03.2023")
 public class BlackJack {
-    private static final String[] CARDS = {"Ass", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Bube", "Dame", "König"};
-    private static final int[] POINTS = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
     private final Scanner scanner;
     private final Card[] playerCards = new Card[21];
     private final Card[] croupiersCards = new Card[21];
@@ -61,7 +59,7 @@ public class BlackJack {
     }
 
     private Card randCard() {
-        return Card.values()[(int) (Math.random() * CARDS.length)];
+        return Card.values()[(int) (Math.random() * Card.values().length)];
     }
 
     public void run() {
