@@ -10,14 +10,14 @@ public class BlackJack {
     private static final String[] CARDS = {"Ass", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Bube", "Dame", "König"};
     private static final int[] POINTS = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
     private final Scanner scanner;
-    private final int[] playerCards = new int[21];
-    private final int[] croupiersCards = new int[21];
+    private final Card[] playerCards = new Card[21];
+    private final Card[] croupiersCards = new Card[21];
     private int playerCardCount = 0;
     private int croupiersCardCount = 0;
     private int playerPoints = 0;
     private int croupiersPoints = 0;
-    private int playerAsses = 0;
-    private int croupiersAsses = 0;
+    private int playerAces = 0;
+    private int croupiersAces = 0;
 
     private BlackJack(Scanner scanner) {
         this.scanner = scanner;
@@ -40,28 +40,28 @@ public class BlackJack {
         }
     }
 
-    private void addPlayerCard(int card) {
+    private void addPlayerCard(Card card) {
         playerCards[playerCardCount++] = card;
-        playerPoints += POINTS[card];
-        if (card == 0) {
-            playerAsses += 1;
+        playerPoints += card.getNum();
+        if (card == Card.Ace) {
+            playerAces += 1;
             playerPoints -= 10;
         }
-        System.out.printf("You: %s\n", CARDS[card]);
+        System.out.printf("You: %s\n", card.getName());
     }
 
-    private void addCroupiersCard(int card) {
+    private void addCroupiersCard(Card card) {
         croupiersCards[croupiersCardCount++] = card;
-        croupiersPoints += POINTS[card];
-        if (card == 0) {
-            croupiersAsses += 1;
+        croupiersPoints += card.getNum();
+        if (card == Card.Ace) {
+            croupiersAces += 1;
             croupiersPoints -= 10;
         }
-        System.out.printf("Croupiers: %s\n", CARDS[card]);
+        System.out.printf("Croupiers: %s\n", card.getName());
     }
 
-    private int randCard() {
-        return (int) (Math.random() * CARDS.length);
+    private Card randCard() {
+        return Card.values()[(int) (Math.random() * CARDS.length)];
     }
 
     public void run() {
@@ -84,8 +84,20 @@ public class BlackJack {
                 System.out.printf("The croupier got %d points.\n\n", croupiersPoints);
                 return;
             }
+            if (playerPoints == 21) {
+                break;
+            }
+            // if (playerCardCount == 2) {
+            //     if (playerCards[0] != Card.Ace && playerCards[1] != Card.Ace) {
+            //         continue;
+            //     }
+            //     if (playerCards[0].getNum() != 10 && playerCards[1].getNum() != 10) {
+            //         continue;
+            //     }
+            //     break;
+            // }
         }
-        for (int i = 0; i < playerAsses; i++) {
+        for (int i = 0; i < playerAces; i++) {
             if (playerPoints + 10 > 21) {
                 break;
             }
@@ -99,7 +111,7 @@ public class BlackJack {
             System.out.println("You won! The croupier has too many points.");
         }
         if (playerPoints == croupiersPoints) {
-            System.out.println("It's a draw! Both have equal amount of points.");
+            System.out.println("It's a draw! Both have an equal amount of points.");
         }
         if (playerPoints > croupiersPoints) {
             System.out.println("You won! You have more points than the croupier.");
