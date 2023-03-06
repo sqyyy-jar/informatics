@@ -1,0 +1,11 @@
+l = Länge der Liste - 1
+n = 0
+b = 0
+gehe mit s von n bis l:
+  gehe mit i von n bis l:
+    wenn das Element mit Index i kleiner als das Element mit Index b ist:
+      setze b auf i
+  wechsle die Elemente mit Index n und b
+  erhöhe n um 1
+  setze b auf n
+
