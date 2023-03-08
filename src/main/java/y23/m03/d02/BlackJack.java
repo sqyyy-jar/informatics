@@ -8,10 +8,6 @@ import java.util.Scanner;
 @Page("02.03.2023")
 public class BlackJack {
     private final Scanner scanner;
-    private final Card[] playerCards = new Card[21];
-    private final Card[] croupiersCards = new Card[21];
-    private int playerCardCount = 0;
-    private int croupiersCardCount = 0;
     private int playerPoints = 0;
     private int croupiersPoints = 0;
 
@@ -37,7 +33,6 @@ public class BlackJack {
     }
 
     private void addPlayerCard(Card card) {
-        playerCards[playerCardCount++] = card;
         if (card == Card.Ace) {
             if (playerPoints + 11 > 21) {
                 playerPoints += 1;
@@ -47,11 +42,10 @@ public class BlackJack {
         } else {
             playerPoints += card.getNum();
         }
-        System.out.printf("You: %s (%d points)\n", card.getName(), playerPoints);
+        System.out.printf("You: %s (%d total points)\n", card.getName(), playerPoints);
     }
 
     private void addCroupiersCard(Card card) {
-        croupiersCards[croupiersCardCount++] = card;
         if (card == Card.Ace) {
             if (croupiersPoints + 11 > 21) {
                 croupiersPoints += 1;
@@ -61,7 +55,7 @@ public class BlackJack {
         } else {
             croupiersPoints += card.getNum();
         }
-        System.out.printf("Croupiers: %s (%d points)\n", card.getName(), croupiersPoints);
+        System.out.printf("Croupiers: %s (%d total points)\n", card.getName(), croupiersPoints);
     }
 
     private Card randCard() {
@@ -82,15 +76,16 @@ public class BlackJack {
                 continue;
             }
             addPlayerCard(randCard());
-            if (playerPoints > 21) {
-                System.out.println("You lost! You have too many points.");
-                System.out.printf("You got %d points.\n", playerPoints);
-                System.out.printf("The croupier got %d points.\n\n", croupiersPoints);
-                return;
-            }
             if (playerPoints == 21) {
                 break;
             }
+            if (playerPoints <= 21) {
+                continue;
+            }
+            System.out.println("You lost! You have too many points.");
+            System.out.printf("You got %d points.\n", playerPoints);
+            System.out.printf("The croupier got %d points.\n\n", croupiersPoints);
+            return;
         }
         addCroupiersCard(randCard());
         if (croupiersPoints <= 16) {
