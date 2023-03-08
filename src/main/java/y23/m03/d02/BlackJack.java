@@ -14,8 +14,6 @@ public class BlackJack {
     private int croupiersCardCount = 0;
     private int playerPoints = 0;
     private int croupiersPoints = 0;
-    private int playerAces = 0;
-    private int croupiersAces = 0;
 
     private BlackJack(Scanner scanner) {
         this.scanner = scanner;
@@ -40,22 +38,30 @@ public class BlackJack {
 
     private void addPlayerCard(Card card) {
         playerCards[playerCardCount++] = card;
-        playerPoints += card.getNum();
         if (card == Card.Ace) {
-            playerAces += 1;
-            playerPoints -= 10;
+            if (playerPoints + 11 > 21) {
+                playerPoints += 1;
+            } else {
+                playerPoints += 11;
+            }
+        } else {
+            playerPoints += card.getNum();
         }
-        System.out.printf("You: %s\n", card.getName());
+        System.out.printf("You: %s (%d points)\n", card.getName(), playerPoints);
     }
 
     private void addCroupiersCard(Card card) {
         croupiersCards[croupiersCardCount++] = card;
-        croupiersPoints += card.getNum();
         if (card == Card.Ace) {
-            croupiersAces += 1;
-            croupiersPoints -= 10;
+            if (croupiersPoints + 11 > 21) {
+                croupiersPoints += 1;
+            } else {
+                croupiersPoints += 11;
+            }
+        } else {
+            croupiersPoints += card.getNum();
         }
-        System.out.printf("Croupiers: %s\n", card.getName());
+        System.out.printf("Croupiers: %s (%d points)\n", card.getName(), croupiersPoints);
     }
 
     private Card randCard() {
@@ -85,21 +91,6 @@ public class BlackJack {
             if (playerPoints == 21) {
                 break;
             }
-            // if (playerCardCount == 2) {
-            //     if (playerCards[0] != Card.Ace && playerCards[1] != Card.Ace) {
-            //         continue;
-            //     }
-            //     if (playerCards[0].getNum() != 10 && playerCards[1].getNum() != 10) {
-            //         continue;
-            //     }
-            //     break;
-            // }
-        }
-        for (int i = 0; i < playerAces; i++) {
-            if (playerPoints + 10 > 21) {
-                break;
-            }
-            playerPoints += 10;
         }
         addCroupiersCard(randCard());
         if (croupiersPoints <= 16) {
