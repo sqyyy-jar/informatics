@@ -33,27 +33,17 @@ public class BlackJack {
     }
 
     private void addPlayerCard(Card card) {
-        if (card == Card.Ace) {
-            if (playerPoints + 11 > 21) {
-                playerPoints += 1;
-            } else {
-                playerPoints += 11;
-            }
-        } else {
-            playerPoints += card.getNum();
+        playerPoints += card.getNum();
+        if (card == Card.Ace && playerPoints > 21) {
+            playerPoints -= 10;
         }
         System.out.printf("You: %s (%d total points)\n", card.getName(), playerPoints);
     }
 
     private void addCroupiersCard(Card card) {
-        if (card == Card.Ace) {
-            if (croupiersPoints + 11 > 21) {
-                croupiersPoints += 1;
-            } else {
-                croupiersPoints += 11;
-            }
-        } else {
-            croupiersPoints += card.getNum();
+        croupiersPoints += card.getNum();
+        if (card == Card.Ace && croupiersPoints > 21) {
+            croupiersPoints -= 10;
         }
         System.out.printf("Croupiers: %s (%d total points)\n", card.getName(), croupiersPoints);
     }
