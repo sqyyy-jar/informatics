@@ -1,3 +1,5 @@
+import random
+
 def sort(lst):
     l = len(lst) - 1
     b = 0
@@ -10,6 +12,6 @@ def sort(lst):
         lst[b] = tmp
         b = s + 1
 
-my_list = [5, 4, 3, 2, 1]
+my_list = [random.randint(1, 50) for _ in range(10)]
 sort(my_list)
 print(my_list)
