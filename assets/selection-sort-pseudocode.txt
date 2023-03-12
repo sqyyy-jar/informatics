@@ -1,8 +1,7 @@
 l = Länge der Liste
-b = 0
 gehe mit s von 0 bis l, exklusiv:
+  setze b auf s
   gehe mit i von s bis l, exklusiv:
     wenn das Element mit Index i kleiner als das Element mit Index b ist:
       setze b auf i
   wechsle die Elemente mit Index s und b
-  setze b auf s + 1
