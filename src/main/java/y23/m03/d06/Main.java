@@ -24,28 +24,41 @@ public class Main {
     }
 
     public static <T extends Comparable<T>> void selectionSort(T[] array) {
-        int best = 0;
-        for (int start = 0; start < array.length; ) {
+        for (int start = 0; start < array.length; start++) {
+            int best = start;
             for (int i = start; i < array.length; i++) {
-                T a = array[i];
-                if (a.compareTo(array[best]) < 0) {
+                if (array[i].compareTo(array[best]) < 0) {
                     best = i;
                 }
             }
             T a = array[start];
             array[start] = array[best];
             array[best] = a;
-            best = ++start;
+        }
+    }
+
+    public static void selectionSort(int[] array) {
+        for (int start = 0; start < array.length; start++) {
+            int best = start;
+            for (int i = start; i < array.length; i++) {
+                if (array[i] < array[best]) {
+                    best = i;
+                }
+            }
+            int a = array[start];
+            array[start] = array[best];
+            array[best] = a;
         }
     }
 
     @Entrypoint
     public static void main() {
-        var testArray = new Integer[16];
+        var testArray = new int[100_000];
         var random = new Random();
         for (int i = 0; i < testArray.length; i++) {
-            testArray[i] = random.nextInt(100);
+            testArray[i] = random.nextInt(1, 50);
         }
+        System.out.println("Array randomized");
         selectionSort(testArray);
         System.out.println(Arrays.toString(testArray));
     }
