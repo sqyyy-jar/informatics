@@ -28,9 +28,8 @@ public class Main {
         frame.setLocation(1920 / 2 - WIDTH / 2, 1080 / 2 - HEIGHT / 2);
         frame.setResizable(false);
         var tabs = new JTabbedPane();
-        tabs.setFocusable(true);
-        var nameList = createNameListPanel();
-        tabs.addTab("Namensliste", nameList.panel());
+        addRegistrationTab(tabs);
+        addNameListTab(tabs);
         frame.add(tabs);
         frame.setVisible(true);
         for (int i = 0; i < 100; i++) {
@@ -41,7 +40,40 @@ public class Main {
         }
     }
 
-    private static NameList createNameListPanel() {
+    private static void addRegistrationTab(JTabbedPane tabs) {
+        var componentWidth = 150;
+        var mid = WIDTH / 2 - componentWidth / 2;
+        var componentCount = 6;
+        var topOffset = HEIGHT / 2 - 30 * (componentCount - 1);
+        var panel = new JPanel();
+        panel.setLayout(null);
+        var nameLabel = new JLabel("Vorname:");
+        nameLabel.setText("Vorname:");
+        nameLabel.setBounds(mid, topOffset += 30, componentWidth, 25);
+        var nameField = new JTextField();
+        nameField.setBounds(mid, topOffset += 30, componentWidth, 25);
+        var surnameLabel = new JLabel("Nachname:");
+        surnameLabel.setBounds(mid, topOffset += 30, componentWidth, 25);
+        var surnameField = new JTextField();
+        surnameField.setBounds(mid, topOffset += 30, componentWidth, 25);
+        var submitButton = new JButton("Registrieren");
+        submitButton.setBounds(mid, topOffset += 30, componentWidth, 25);
+        var statusMessage = new JLabel();
+        statusMessage.setBounds(mid, topOffset += 30, componentWidth, 25);
+        submitButton.addActionListener(e -> {
+            statusMessage.setForeground(Color.RED);
+            statusMessage.setText("Not implemented");
+        });
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(surnameLabel);
+        panel.add(surnameField);
+        panel.add(submitButton);
+        panel.add(statusMessage);
+        tabs.addTab("Registrierung", panel);
+    }
+
+    private static void addNameListTab(JTabbedPane tabs) {
         var panel = new JPanel();
         panel.setLayout(null);
 //        var refreshButton = new JButton("Neu laden");
@@ -59,9 +91,8 @@ public class Main {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar()
             .setUnitIncrement(16);
-        panel.setFocusable(true);
 //        panel.add(refreshButton);
         panel.add(scrollPane);
-        return new NameList(panel, list);
+        tabs.addTab("Namensliste", panel);
     }
 }
