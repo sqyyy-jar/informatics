@@ -3,7 +3,7 @@ package y23.m04.d20;
 import java.util.Objects;
 
 public class Util {
-    public static String[] filterDuplicates(String[] array) {
+    public static Participant[] filterDuplicates(Participant[] array) {
         long[] bitset = new long[(array.length & 63) == 0
             ? array.length >> 6
             : (array.length >> 6) + 1];
@@ -22,7 +22,7 @@ public class Util {
                 bitset[j >> 6] |= 1L << (j & 63);
             }
         }
-        String[] newArray = new String[uniqueCount];
+        Participant[] newArray = new Participant[uniqueCount];
         int index = 0;
         for (int i = 0; i < bitset.length; i++) {
             long bitPack = bitset[i];
