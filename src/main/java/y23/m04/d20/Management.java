@@ -89,6 +89,10 @@ public class Management {
         return true;
     }
 
+    public void sort() {
+        Util.selectionSort(participants, participantCount);
+    }
+
     public int getMaxParticipantCount() {
         return participants.length;
     }
