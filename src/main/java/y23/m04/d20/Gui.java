@@ -99,7 +99,7 @@ public class Gui {
             }
             statusMessage.setForeground(Color.GREEN);
             statusMessage.setText("Erfolgreich registriert");
-            nameLines.addElement(participant.getName() + " " + participant.getSurname());
+            nameLines.addElement(participant.getSurname() + " " + participant.getName());
             updateFillText(fill);
         });
         aligner.finish();
@@ -112,8 +112,10 @@ public class Gui {
         panel.setLayout(null);
         var deleteButton = new JButton("Entfernen");
         deleteButton.setBounds(5, 5, 100, 20);
-        var sortButton = new JButton("Sortiern");
-        sortButton.setBounds(106, 5, 100, 20);
+        var nameSortButton = new JButton("Sortiern (Vorname)");
+        nameSortButton.setBounds(106, 5, 150, 20);
+        var surnameSortButton = new JButton("Sortiern (Nachname)");
+        surnameSortButton.setBounds(257, 5, 150, 20);
         var list = new JList<String>();
         list.setModel(nameLines);
         var innerScrollPanel = new JPanel();
@@ -125,14 +127,19 @@ public class Gui {
         scrollPane.getVerticalScrollBar()
             .setUnitIncrement(16);
         deleteButton.addActionListener(e -> removeParticipants(list));
-        sortButton.addActionListener(e -> {
-            management.sort();
+        surnameSortButton.addActionListener(e -> {
+            management.sortBySurname();
+            reloadNameList();
+        });
+        nameSortButton.addActionListener(e -> {
+            management.sortByName();
             reloadNameList();
         });
         list.addKeyListener(new KeyPressListener(KeyEvent.VK_DELETE,
             e -> removeParticipants(list)));
         panel.add(deleteButton);
-        panel.add(sortButton);
+        panel.add(nameSortButton);
+        panel.add(surnameSortButton);
         panel.add(scrollPane);
         tabs.addTab("Namensliste", panel);
     }
@@ -141,7 +148,7 @@ public class Gui {
         nameLines.clear();
         for (int i = 0; i < management.getParticipantCount(); i++) {
             var participant = management.getParticipant(i);
-            nameLines.addElement(participant.getName() + " " + participant.getSurname());
+            nameLines.addElement(participant.getSurname() + " " + participant.getName());
         }
     }
 
