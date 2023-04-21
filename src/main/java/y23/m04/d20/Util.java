@@ -1,5 +1,6 @@
 package y23.m04.d20;
 
+import java.text.Collator;
 import java.util.Objects;
 
 public class Util {
@@ -41,5 +42,47 @@ public class Util {
             }
         }
         return newArray;
+    }
+
+    public static <T> void filterDuplicatesInplace(T[] array) {
+        for (int i = 0; i < array.length; i++) {
+            T t = array[i];
+            if (t == null) {
+                continue;
+            }
+            for (int j = i + 1; j < array.length; j++) {
+                if (!Objects.equals(array[i], array[j])) {
+                    continue;
+                }
+                array[j] = null;
+            }
+        }
+        int targetIndex = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                continue;
+            }
+            if (i == targetIndex) {
+                targetIndex++;
+                continue;
+            }
+            array[targetIndex++] = array[i];
+            array[i] = null;
+        }
+    }
+
+    public static <T extends Comparable<T>> void selectionSort(T[] array, int length) {
+        Collator collator = Collator.getInstance();
+        for (int start = 0; start < length; start++) {
+            int best = start;
+            for (int i = start; i < length; i++) {
+                if (array[i].compareTo(array[best]) < 0) {
+                    best = i;
+                }
+            }
+            T temp = array[start];
+            array[start] = array[best];
+            array[best] = temp;
+        }
     }
 }

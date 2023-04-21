@@ -1,6 +1,6 @@
 package y23.m04.d20;
 
-public class Participant {
+public class Participant implements Comparable<Participant> {
     private final String name;
     private final String surname;
 
@@ -22,6 +22,15 @@ public class Participant {
         if (!(obj instanceof Participant participant)) {
             return false;
         }
-        return this.name.equalsIgnoreCase(participant.name) && this.surname.equalsIgnoreCase(participant.surname);
+        return name.equalsIgnoreCase(participant.name) && surname.equalsIgnoreCase(participant.surname);
+    }
+
+    @Override
+    public int compareTo(Participant o) {
+        int cmp = name.compareToIgnoreCase(o.name);
+        if (cmp == 0) {
+            cmp = surname.compareToIgnoreCase(o.surname);
+        }
+        return cmp;
     }
 }

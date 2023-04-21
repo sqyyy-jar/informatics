@@ -110,18 +110,29 @@ public class Gui {
     private void addNameListTab(JTabbedPane tabs) {
         var panel = new JPanel();
         panel.setLayout(null);
+        var deleteButton = new JButton("Entfernen");
+        deleteButton.setBounds(5, 5, 100, 20);
+        var sortButton = new JButton("Sortiern");
+        sortButton.setBounds(106, 5, 100, 20);
         var list = new JList<String>();
         list.setModel(nameLines);
-        list.addKeyListener(new KeyPressListener(KeyEvent.VK_DELETE,
-            e -> removeParticipants(list.getAnchorSelectionIndex(), list.getLeadSelectionIndex())));
         var innerScrollPanel = new JPanel();
         innerScrollPanel.setLayout(new BorderLayout());
         innerScrollPanel.add(list);
         var scrollPane = new JScrollPane(innerScrollPanel);
-        scrollPane.setBounds(5, 5, width - 10, height - 70);
+        scrollPane.setBounds(5, 25, width - 10, height - 90);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar()
             .setUnitIncrement(16);
+        deleteButton.addActionListener(e -> removeParticipants(list));
+        sortButton.addActionListener(e -> {
+            management.sort();
+            reloadNameList();
+        });
+        list.addKeyListener(new KeyPressListener(KeyEvent.VK_DELETE,
+            e -> removeParticipants(list)));
+        panel.add(deleteButton);
+        panel.add(sortButton);
         panel.add(scrollPane);
         tabs.addTab("Namensliste", panel);
     }
@@ -134,7 +145,9 @@ public class Gui {
         }
     }
 
-    private void removeParticipants(int startIndex, int endIndex) {
+    private void removeParticipants(JList<String> list) {
+        var startIndex = list.getAnchorSelectionIndex();
+        var endIndex = list.getLeadSelectionIndex();
         if (startIndex == -1 || endIndex == -1) {
             return;
         }
