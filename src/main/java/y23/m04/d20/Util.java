@@ -70,19 +70,4 @@ public class Util {
             array[i] = null;
         }
     }
-
-    public static <T extends Comparable<T>> void selectionSort(T[] array, int length) {
-        Collator collator = Collator.getInstance();
-        for (int start = 0; start < length; start++) {
-            int best = start;
-            for (int i = start; i < length; i++) {
-                if (array[i].compareTo(array[best]) < 0) {
-                    best = i;
-                }
-            }
-            T temp = array[start];
-            array[start] = array[best];
-            array[best] = temp;
-        }
-    }
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.Collator;
 import java.util.Objects;
 
 public class Management {
@@ -89,8 +90,34 @@ public class Management {
         return true;
     }
 
-    public void sort() {
-        Util.selectionSort(participants, participantCount);
+    public void sortByName() {
+        Collator collator = Collator.getInstance();
+        for (int start = 0; start < participantCount; start++) {
+            int best = start;
+            for (int i = start; i < participantCount; i++) {
+                if (participants[i].compareByName(participants[best]) < 0) {
+                    best = i;
+                }
+            }
+            Participant temp = participants[start];
+            participants[start] = participants[best];
+            participants[best] = temp;
+        }
+    }
+
+    public void sortBySurname() {
+        Collator collator = Collator.getInstance();
+        for (int start = 0; start < participantCount; start++) {
+            int best = start;
+            for (int i = start; i < participantCount; i++) {
+                if (participants[i].compareBySurname(participants[best]) < 0) {
+                    best = i;
+                }
+            }
+            Participant temp = participants[start];
+            participants[start] = participants[best];
+            participants[best] = temp;
+        }
     }
 
     public int getMaxParticipantCount() {
