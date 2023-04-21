@@ -136,7 +136,6 @@ public class Gui {
 
     private void removeParticipants(int startIndex, int endIndex) {
         if (startIndex == -1 || endIndex == -1) {
-            System.out.println("Nothing selected");
             return;
         }
         if (startIndex > endIndex) {
@@ -144,7 +143,6 @@ public class Gui {
             startIndex = endIndex;
             endIndex = temp;
         }
-        System.out.printf("DBG: %d; %d\n", startIndex, endIndex);
         var count = endIndex - startIndex + 1;
         for (int i = 0; i < count; i++) {
             nameLines.remove(startIndex);
