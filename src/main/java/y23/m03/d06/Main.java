@@ -4,7 +4,6 @@ import com.github.sqyyy.jnb.Entrypoint;
 import com.github.sqyyy.jnb.Page;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Random;
 
 @Page("06.03.2023")
@@ -54,8 +53,8 @@ public class Main {
 
     public static int[] filterDuplicates(int[] array) {
         long[] bitset = new long[(array.length & 63) == 0
-            ? array.length >> 6
-            : (array.length >> 6) + 1];
+                ? array.length >> 6
+                : (array.length >> 6) + 1];
         int uniqueCount = 0;
         for (int i = 0; i < array.length; i++) {
             long bitPack = bitset[i >> 6];
@@ -78,8 +77,8 @@ public class Main {
             int bitPackLength = 64;
             if (i == bitset.length - 1) {
                 bitPackLength = (array.length & 63) == 0
-                    ? 64
-                    : array.length & 63;
+                        ? 64
+                        : array.length & 63;
             }
             for (int bitIndex = 0; bitIndex < bitPackLength; bitIndex++) {
                 long bit = bitPack >> bitIndex & 1;
@@ -102,8 +101,8 @@ public class Main {
         System.out.println("Array duplicate filtering");
         testArray = filterDuplicates(testArray);
         var list = Arrays.stream(testArray)
-            .boxed()
-            .toList();
+                .boxed()
+                .toList();
         for (int i = 0; i < 128; i++) {
             if (!list.contains(i)) {
                 System.out.println("Not found: " + i);
