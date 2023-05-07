@@ -1,6 +1,5 @@
 package y23.m04.d20;
 
-import java.text.Collator;
 import java.util.Objects;
 
 public class Util {
