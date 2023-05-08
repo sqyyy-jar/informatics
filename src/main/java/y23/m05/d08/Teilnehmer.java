@@ -3,12 +3,12 @@ package y23.m05.d08;
 public class Teilnehmer {
     private String name;
     private String vorname;
-    private boolean essenBezahlt;
+    private String klasse;
 
-    public Teilnehmer(String name, String vorname, boolean essenBezahlt) {
+    public Teilnehmer(String name, String vorname, String klasse) {
         this.name = name;
         this.vorname = vorname;
-        this.essenBezahlt = essenBezahlt;
+        this.klasse = klasse;
     }
 
     public String getName() {
@@ -19,7 +19,7 @@ public class Teilnehmer {
         return vorname;
     }
 
-    public boolean hatEssenBezahlt() {
-        return essenBezahlt;
+    public String getKlasse() {
+        return klasse;
     }
 }
