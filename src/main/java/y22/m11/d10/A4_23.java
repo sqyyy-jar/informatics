@@ -1,8 +1,5 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
-@Exercise("Aufgabe 4.23 - Beispielfehler")
 @SuppressWarnings("all")
 public class A4_23 {
     public static void run() {

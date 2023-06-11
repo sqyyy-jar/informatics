@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.*;
 
-@Exercise("Aufgabe 4.28 - Ziffern Zerleger")
 public class A4_28 {
     public static void run() {
         System.out.print("Positive ganze Zahl: ");

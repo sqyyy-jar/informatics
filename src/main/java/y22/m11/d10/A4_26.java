@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.26 - Quersummen Rechner")
 public class A4_26 {
     public static void run() {
         System.out.println("A:");

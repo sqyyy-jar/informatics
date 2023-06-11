@@ -1,8 +1,5 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
-@Exercise("Aufgabe 4.27 - Sternzeit Rechner")
 public class A4_27 {
     public static void run() {
         int year = 2011;

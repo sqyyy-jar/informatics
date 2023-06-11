@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.30 - Zinseszins Rechner")
 public class A4_30 {
     public static void run() {
         Scanner scanner = new Scanner(System.in);
