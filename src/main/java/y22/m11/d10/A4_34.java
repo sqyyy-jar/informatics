@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.34 - Befreundete Zahlen Rechner")
 public class A4_34 {
     public static void run() {
         Scanner scanner = new Scanner(System.in);

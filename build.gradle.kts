@@ -22,9 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.atteo.classindex:classindex:3.13")
     implementation("com.github.sqyyy.jnb:core:1.0.1")
-    annotationProcessor("org.atteo.classindex:classindex:3.13")
     annotationProcessor("com.github.sqyyy.jnb:processor:1.0.1")
 }
 

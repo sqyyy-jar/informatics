@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.33 - Tannenbaum Generator")
 public class A4_33 {
     public static void run() {
         System.out.print("Höhe des Baumes: ");

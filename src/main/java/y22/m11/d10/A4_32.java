@@ -1,10 +1,7 @@
 package y22.m11.d10;
 
-import informatics.Exercise;
-
 import java.util.Scanner;
 
-@Exercise("Aufgabe 4.32 - short2long Basis Rechner")
 public class A4_32 {
     public static void run() {
         System.out.print("   Dezimalzahl: ");
