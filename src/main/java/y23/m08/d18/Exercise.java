@@ -1,26 +1,41 @@
 package y23.m08.d18;
 
+import com.github.sqyyy.jnb.Entrypoint;
+import com.github.sqyyy.jnb.Page;
+
 import java.util.Random;
 import java.util.stream.IntStream;
 
+@Page("23/08/18")
 public class Exercise {
-    public int insertionSort(int[] array) {
-        var memAccs = 0;
+    public void insertionSort(int[] array) {
+        var reads = 0;
+        var writes = 0;
+        var outerIters = 0;
+        var innerIters = 0;
         for (var i = 1; i < array.length; i++) {
+            outerIters++;
             var element = array[i];
-            memAccs++;
+            reads++;
             var j = i - 1;
             for (; j >= 0 && element < array[j]; j--) {
-                memAccs++;
+                innerIters++;
+                reads++;
                 array[j + 1] = array[j];
-                memAccs += 2;
+                reads++;
+                writes++;
             }
             array[j + 1] = element;
-            memAccs++;
+            writes++;
         }
-        return memAccs;
+        System.out.println("reads: " + reads);
+        System.out.println("writes: " + writes);
+        System.out.println("outerIters: " + outerIters);
+        System.out.println("innerIters: " + innerIters);
+        System.out.println("-----");
     }
 
+    @Entrypoint
     public static void main(String[] args) {
         var a = IntStream.rangeClosed(1, 10).toArray();
         var b = IntStream.rangeClosed(1, 100).toArray();
@@ -34,9 +49,9 @@ public class Exercise {
             d[i] = 1 + rand.nextInt(10);
         }
         var exc = new Exercise();
-        System.out.println(exc.insertionSort(a));
-        System.out.println(exc.insertionSort(b));
-        System.out.println(exc.insertionSort(c));
-        System.out.println(exc.insertionSort(d));
+        exc.insertionSort(a);
+        exc.insertionSort(b);
+        exc.insertionSort(c);
+        exc.insertionSort(d);
     }
 }
