@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd java-notebooks
+./gradlew publishToMavenLocal
+cd ..
