@@ -3,6 +3,8 @@ package y23.m08.d18;
 import com.github.sqyyy.jnb.Entrypoint;
 import com.github.sqyyy.jnb.Page;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.IntStream;
 
 @Page("23/08/18")
@@ -38,7 +40,6 @@ public class Exercise {
                 array[j + 1] = element; writes++;
             }
         }
-        System.out.println("---");
         System.out.println("reads: " + reads);
         System.out.println("writes: " + writes);
         System.out.println("outerIters: " + outerIters);
@@ -84,6 +85,7 @@ public class Exercise {
         int[] bc = array.clone();
         int[] wc = rev(array.clone());
         insertionSort(bc);
+        System.out.println("---");
         insertionSort(wc);
         System.out.println();
     }
