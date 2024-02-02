@@ -16,8 +16,12 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.sqyyy.jnb:core:1.0.1")
-    annotationProcessor("com.github.sqyyy.jnb:processor:1.0.1")
+    implementation("com.github.sqyyy.jnb:core:1.0.1") {
+        version { branch = "main" }
+    }
+    annotationProcessor("com.github.sqyyy.jnb:processor:1.0.1") {
+        version { branch = "main" }
+    }
 }
 
 tasks.jar {
