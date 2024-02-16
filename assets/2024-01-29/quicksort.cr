@@ -20,12 +20,13 @@ def quickSort(links : Int, rechts : Int, feld : Array, depth : Int)
     feld[i] = feld[rechts]
     feld[rechts] = tmp
     printf("    " * depth)
-    puts("#{feld}")
+    puts("qS(#{links}, #{rechts}) #{feld}")
     quickSort(links, i - 1, feld, depth + 1)
     quickSort(i + 1, rechts, feld, depth + 1)
   end
 end
 
 # array = [3, 5, 2, 7, 8, 6, 1, 9, 3, 4]
-array = [3, 3, 3]
+# array = [3, 3, 3]
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 quickSort(0, array.size - 1, array, 0)
