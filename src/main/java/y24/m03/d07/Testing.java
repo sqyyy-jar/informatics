@@ -1,9 +1,17 @@
 package y24.m03.d07;
 
+import java.util.Objects;
+
 public class Testing {
     public static void assertThat(boolean condition) {
         if (!condition) {
             throw new AssertionError();
+        }
+    }
+
+    public static <T>void assertEq(T left, T right) {
+        if (!Objects.equals(left, right)) {
+            throw new AssertionError(left + " != " + right);
         }
     }
 
@@ -100,6 +108,16 @@ public class Testing {
             assertThat(stack.pop() == 2);
             assertThat(stack.pop() == 1);
         }
+        {
+            Stack<Integer> stack = new Stack<>();
+            stack.push(3);
+            stack.push(2);
+            stack.push(1);
+            stack.sortAscending();
+            assertEq(stack.pop(), 3);
+            assertEq(stack.pop(), 2);
+            assertEq(stack.pop(), 1);
+        }
     }
 
     public static void testStackDescending() {
@@ -125,6 +143,16 @@ public class Testing {
             stack.insertSortedDescending(1);
             assertThat(stack.pop() == 1);
             assertThat(stack.pop() == 2);
+        }
+        {
+            Stack<Integer> stack = new Stack<>();
+            stack.push(1);
+            stack.push(2);
+            stack.push(3);
+            stack.sortDescending();
+            assertEq(stack.pop(), 1);
+            assertEq(stack.pop(), 2);
+            assertEq(stack.pop(), 3);
         }
     }
 
