@@ -2,12 +2,13 @@ package y24.m02.d09;
 
 import java.util.Arrays;
 
-public class ObservedArray {
+public class ArrayStats {
     private final int[] array;
     private int reads = 0;
     private int writes = 0;
+    private int comps = 0;
 
-    public ObservedArray(int... array) {
+    public ArrayStats(int... array) {
         this.array = array;
     }
 
@@ -25,12 +26,24 @@ public class ObservedArray {
         return this.array.length;
     }
 
+    public void incComps() {
+        this.comps++;
+    }
+
     public int getReads() {
         return reads;
     }
 
     public int getWrites() {
         return writes;
+    }
+
+    public int getComps() {
+        return comps;
+    }
+
+    public int[] unwrap() {
+        return this.array;
     }
 
     @Override
