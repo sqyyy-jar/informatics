@@ -82,6 +82,70 @@ public class Stack<T extends Comparable<T>> {
         node.setNext(below);
     }
 
+    public void sortAscending() {
+        if (isEmpty()) {
+            return;
+        }
+        Node<T> end = null;
+        boolean sorted = true;
+        while (sorted) {
+            sorted = false;
+            Node<T> previous = null;
+            Node<T> current = this.top;
+            while (current != null) {
+                Node<T> next = current.getNext();
+                if (next == null || next == end) {
+                    end = current;
+                    break;
+                }
+                if (current.getContent().compareTo(next.getContent()) < 0) {
+                    sorted = true;
+                    if (previous != null) {
+                        previous.setNext(next);
+                    } else {
+                        this.top = next;
+                    }
+                    current.setNext(next.getNext());
+                    next.setNext(current);
+                }
+                previous = current;
+                current = next;
+            }
+        }
+    }
+
+    public void sortDescending() {
+        if (isEmpty()) {
+            return;
+        }
+        Node<T> end = null;
+        boolean sorted = true;
+        while (sorted) {
+            sorted = false;
+            Node<T> previous = null;
+            Node<T> current = this.top;
+            while (current != null) {
+                Node<T> next = current.getNext();
+                if (next == null || next == end) {
+                    end = current;
+                    break;
+                }
+                if (current.getContent().compareTo(next.getContent()) > 0) {
+                    sorted = true;
+                    if (previous != null) {
+                        previous.setNext(next);
+                    } else {
+                        this.top = next;
+                    }
+                    current.setNext(next.getNext());
+                    next.setNext(current);
+                }
+                previous = current;
+                current = next;
+            }
+        }
+    }
+
     private static class Node<T> {
         private final T content;
         private Node<T> next;
