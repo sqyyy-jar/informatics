@@ -19,6 +19,10 @@ public class MiddleQuicksort {
         int right = high;
         while (left < right) {
             if (array[left] > pivot) {
+                if (array[right] > pivot) {
+                    right--;
+                    continue;
+                }
                 if (right == pivotIndex) {
                     pivotIndex = left;
                 }
@@ -31,19 +35,15 @@ public class MiddleQuicksort {
         int element = array[left];
         if (pivotIndex > left) {
             if (element > pivot) {
-                swap(array, pivotIndex, left);
-                pivotIndex = left;
+                swap(array, pivotIndex, pivotIndex = left);
             } else {
-                swap(array, pivotIndex, left + 1);
-                pivotIndex = left + 1;
+                swap(array, pivotIndex, pivotIndex = left + 1);
             }
         } else if (pivotIndex < left) {
             if (element < pivot) {
-                swap(array, pivotIndex, left);
-                pivotIndex = left;
+                swap(array, pivotIndex, pivotIndex = left);
             } else {
-                swap(array, pivotIndex, left - 1);
-                pivotIndex = left - 1;
+                swap(array, pivotIndex, pivotIndex = left - 1);
             }
         }
         return pivotIndex;
