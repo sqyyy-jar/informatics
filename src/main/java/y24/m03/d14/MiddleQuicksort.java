@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MiddleQuicksort {
     public static void quickSort(int[] array, int low, int high) {
-        if (high - low < 1) {
+        if (high <= low) {
             return;
         }
         int partitionIndex = partition(array, low, high);
