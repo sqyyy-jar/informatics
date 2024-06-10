@@ -11,13 +11,17 @@ public class Manager {
         list.insertSorted(student, Student::compare);
     }
 
-    public static void main(String[] args) throws IOException {
-        Manager manager = new Manager();
-        for (String row : Files.readAllLines(Path.of("assets/names.csv"))) {
+    public void loadFile(String fileName) throws IOException {
+        for (String row : Files.readAllLines(Path.of(fileName))) {
             String[] columns = row.split(",", 2);
             String name = columns[0];
             String lastName = columns[1];
-            manager.addStudent(new Student(name, lastName));
+            addStudent(new Student(name, lastName));
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Manager manager = new Manager();
+        manager.loadFile("assets/names.csv");
     }
 }

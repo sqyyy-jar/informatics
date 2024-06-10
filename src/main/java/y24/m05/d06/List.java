@@ -81,6 +81,10 @@ public class List<T> {
         if (content == null || comparator == null) {
             return;
         }
+        if (isEmpty()) {
+            this.insert(content);
+            return;
+        }
         Node<T> current = this.last;
         while (current != null && comparator.compare(current.getContent(), content) > 0) {
             current = current.getPrevious();
