@@ -1,5 +1,7 @@
 package y24.m05.d06;
 
+import java.util.Comparator;
+
 public class List<T> {
     private Node<T> first;
     private Node<T> last;
@@ -73,6 +75,34 @@ public class List<T> {
         newNode.setPrevious(previous);
         newNode.setNext(this.current);
         this.current.setPrevious(newNode);
+    }
+
+    public void insertSorted(T content, Comparator<T> comparator) {
+        if (content == null || comparator == null) {
+            return;
+        }
+        Node<T> current = this.last;
+        while (current != null && comparator.compare(current.getContent(), content) > 0) {
+            current = current.getPrevious();
+        }
+        Node<T> newNode = new Node<>(content);
+        if (current == null) {
+            this.first.setPrevious(newNode);
+            newNode.setNext(this.first);
+            this.first = newNode;
+            return;
+        }
+        if (current == this.last) {
+            this.last.setNext(newNode);
+            newNode.setPrevious(this.last);
+            this.last = newNode;
+            return;
+        }
+        Node<T> next = current.getNext();
+        current.setNext(newNode);
+        newNode.setPrevious(current);
+        newNode.setNext(next);
+        next.setPrevious(newNode);
     }
 
     public void append(T content) {
