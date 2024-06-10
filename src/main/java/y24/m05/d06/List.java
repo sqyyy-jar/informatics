@@ -160,6 +160,66 @@ public class List<T> {
         this.current = next;
     }
 
+    public void insertionSort(Comparator<T> comparator) {
+        if (isEmpty()) {
+            return;
+        }
+        Node<T> firstUnsorted = this.first.getNext();
+        while (firstUnsorted != null) {
+            Node<T> sliderLeft = firstUnsorted.getPrevious();
+            Node<T> sliderRight = firstUnsorted;
+            while (sliderLeft != null && comparator.compare(sliderLeft.getContent(), sliderRight.getContent()) > 0) {
+                T temp = sliderLeft.getContent();
+                sliderLeft.setContent(sliderRight.getContent());
+                sliderRight.setContent(temp);
+                sliderRight = sliderLeft;
+                sliderLeft = sliderLeft.getPrevious();
+            }
+            firstUnsorted = firstUnsorted.getNext();
+        }
+    }
+
+    public void quickSort(Comparator<T> comparator) {
+        if (isEmpty()) {
+            return;
+        }
+        quickSort(comparator, this.first, this.last);
+    }
+
+    // severely fucked
+    private void quickSort(Comparator<T> comparator, Node<T> left, Node<T> right) {
+        if (left == null || right == null || right == left) {
+            return;
+        }
+        Node<T> i = left;
+        Node<T> j = right;
+        T pivot = j.getContent();
+        boolean crossover = false;
+        while (!crossover) {
+            while (i != right && comparator.compare(i.getContent(), pivot) < 0) {
+                i = i.getNext();
+                if (i == j) {
+                    crossover = true;
+                }
+            }
+            while (j != left && comparator.compare(j.getContent(), pivot) > 0) {
+                j = j.getPrevious();
+                if (j == i) {
+                    crossover = true;
+                }
+            }
+            if (i == j || !crossover) {
+                T temp = i.getContent();
+                i.setContent(j.getContent());
+                j.setContent(temp);
+                i = i.getNext();
+                j = j.getPrevious();
+            }
+        }
+        quickSort(comparator, left, j);
+        quickSort(comparator, i, right);
+    }
+
     private static class Node<T> {
         private T content;
         private Node<T> next;

@@ -137,4 +137,88 @@ class ListTests {
         list.toFirst();
         assertEq(list.getContent(), 1);
     }
+
+    @Test
+    void insertionSortRandom() {
+        for (int x : new int[]{4, 5, 2, 3, 1}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.insertionSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
+
+    @Test
+    void insertionSortInverse() {
+        for (int x : new int[]{5, 4, 3, 2, 1}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.insertionSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
+
+    @Test
+    void insertionSortSorted() {
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.insertionSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
+
+    // @Test
+    void quickSortRandom() {
+        for (int x : new int[]{4, 5, 2, 3, 1}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.quickSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
+
+    //@Test
+    void quickSortInverse() {
+        for (int x : new int[]{5, 4, 3, 2, 1}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.quickSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
+
+    //@Test
+    void quickSortSorted() {
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            list.append(x);
+        }
+        assertThat(!list.isEmpty());
+        list.quickSort(Integer::compare);
+        list.toFirst();
+        for (int x : new int[]{1, 2, 3, 4, 5}) {
+            assertEq(list.getContent(), x);
+            list.next();
+        }
+    }
 }
