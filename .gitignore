@@ -39,3 +39,5 @@ bin/
 .DS_Store
 
 participants.txt
+**/target
+/assets/names.csv

@@ -8,7 +8,7 @@ public class Manager {
     private final List<Student> list = new List<>();
 
     public void addStudent(Student student) {
-        list.insertSorted(student, Student::compare);
+        list.insertSortedBack(student, Student::compare);
     }
 
     public void loadFile(String fileName) throws IOException {

@@ -111,12 +111,12 @@ class ListTests {
     }
 
     @Test
-    void insertSorted() {
-        list.insertSorted(4, Integer::compare);
-        list.insertSorted(5, Integer::compare);
-        list.insertSorted(2, Integer::compare);
-        list.insertSorted(3, Integer::compare);
-        list.insertSorted(1, Integer::compare);
+    void insertSortedFront() {
+        list.insertSortedFront(4, Integer::compare);
+        list.insertSortedFront(5, Integer::compare);
+        list.insertSortedFront(2, Integer::compare);
+        list.insertSortedFront(3, Integer::compare);
+        list.insertSortedFront(1, Integer::compare);
         assertThat(!list.isEmpty());
         list.toFirst();
         assertEq(list.getContent(), 1);
@@ -131,11 +131,43 @@ class ListTests {
     }
 
     @Test
-    void insertSortedEmptyList() {
-        list.insertSorted(1, Integer::compare);
+    void insertSortedFrontEmptyList() {
+        list.insertSortedFront(1, Integer::compare);
+        assertThat(!list.isEmpty());
+        list.toLast();
+        assertEq(list.getContent(), 1);
+        list.remove();
+        assertThat(list.isEmpty());
+    }
+
+    @Test
+    void insertSortedBack() {
+        list.insertSortedBack(4, Integer::compare);
+        list.insertSortedBack(5, Integer::compare);
+        list.insertSortedBack(2, Integer::compare);
+        list.insertSortedBack(3, Integer::compare);
+        list.insertSortedBack(1, Integer::compare);
         assertThat(!list.isEmpty());
         list.toFirst();
         assertEq(list.getContent(), 1);
+        list.next();
+        assertEq(list.getContent(), 2);
+        list.next();
+        assertEq(list.getContent(), 3);
+        list.next();
+        assertEq(list.getContent(), 4);
+        list.next();
+        assertEq(list.getContent(), 5);
+    }
+
+    @Test
+    void insertSortedBackEmptyList() {
+        list.insertSortedBack(1, Integer::compare);
+        assertThat(!list.isEmpty());
+        list.toLast();
+        assertEq(list.getContent(), 1);
+        list.remove();
+        assertThat(list.isEmpty());
     }
 
     @Test
@@ -180,7 +212,7 @@ class ListTests {
         }
     }
 
-    // @Test
+    @Test
     void quickSortRandom() {
         for (int x : new int[]{4, 5, 2, 3, 1}) {
             list.append(x);
@@ -194,7 +226,7 @@ class ListTests {
         }
     }
 
-    //@Test
+    @Test
     void quickSortInverse() {
         for (int x : new int[]{5, 4, 3, 2, 1}) {
             list.append(x);
@@ -208,7 +240,7 @@ class ListTests {
         }
     }
 
-    //@Test
+    @Test
     void quickSortSorted() {
         for (int x : new int[]{1, 2, 3, 4, 5}) {
             list.append(x);

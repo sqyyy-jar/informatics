@@ -77,8 +77,40 @@ public class List<T> {
         this.current.setPrevious(newNode);
     }
 
-    public void insertSorted(T content, Comparator<T> comparator) {
-        if (content == null || comparator == null) {
+    public void insertSortedFront(T content, Comparator<T> comparator) {
+        if (content == null) {
+            return;
+        }
+        if (isEmpty()) {
+            this.insert(content);
+            return;
+        }
+        Node<T> current = this.first;
+        while (current != null && comparator.compare(current.getContent(), content) < 0) {
+            current = current.getNext();
+        }
+        Node<T> newNode = new Node<>(content);
+        if (current == null) {
+            this.last.setNext(newNode);
+            newNode.setPrevious(this.last);
+            this.last = newNode;
+            return;
+        }
+        if (current == this.first) {
+            newNode.setNext(this.first);
+            this.first.setPrevious(newNode);
+            this.first = newNode;
+            return;
+        }
+        Node<T> previous = current.getPrevious();
+        previous.setNext(newNode);
+        newNode.setPrevious(previous);
+        newNode.setNext(current);
+        current.setPrevious(current);
+    }
+
+    public void insertSortedBack(T content, Comparator<T> comparator) {
+        if (content == null) {
             return;
         }
         if (isEmpty()) {
@@ -164,6 +196,7 @@ public class List<T> {
         if (isEmpty()) {
             return;
         }
+        this.current = null;
         Node<T> firstUnsorted = this.first.getNext();
         while (firstUnsorted != null) {
             Node<T> sliderLeft = firstUnsorted.getPrevious();
@@ -183,10 +216,10 @@ public class List<T> {
         if (isEmpty()) {
             return;
         }
+        this.current = null;
         quickSort(comparator, this.first, this.last);
     }
 
-    // severely fucked
     private void quickSort(Comparator<T> comparator, Node<T> left, Node<T> right) {
         if (left == null || right == null || right == left) {
             return;
@@ -194,30 +227,31 @@ public class List<T> {
         Node<T> i = left;
         Node<T> j = right;
         T pivot = j.getContent();
-        boolean crossover = false;
-        while (!crossover) {
-            while (i != right && comparator.compare(i.getContent(), pivot) < 0) {
+        boolean end = false;
+        while (!end) {
+            while (i.getNext() != j && comparator.compare(i.getContent(), pivot) < 0) {
                 i = i.getNext();
-                if (i == j) {
-                    crossover = true;
-                }
             }
-            while (j != left && comparator.compare(j.getContent(), pivot) > 0) {
+            while (j.getPrevious() != i && comparator.compare(j.getContent(), pivot) > 0) {
                 j = j.getPrevious();
-                if (j == i) {
-                    crossover = true;
-                }
             }
-            if (i == j || !crossover) {
+            end = i.getNext() == j;
+            if (comparator.compare(i.getContent(), j.getContent()) > 0) {
                 T temp = i.getContent();
                 i.setContent(j.getContent());
                 j.setContent(temp);
-                i = i.getNext();
-                j = j.getPrevious();
+                if (!end) {
+                    i = i.getNext();
+                    end = i.getNext() == j;
+                }
+                if (!end) {
+                    j = j.getPrevious();
+                    end = i.getNext() == j;
+                }
             }
         }
-        quickSort(comparator, left, j);
-        quickSort(comparator, i, right);
+        quickSort(comparator, left, i);
+        quickSort(comparator, j, right);
     }
 
     private static class Node<T> {
